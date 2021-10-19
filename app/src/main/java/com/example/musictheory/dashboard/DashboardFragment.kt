@@ -1,4 +1,4 @@
-package com.example.musictheory.ui.dashboard
+package com.example.musictheory.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater

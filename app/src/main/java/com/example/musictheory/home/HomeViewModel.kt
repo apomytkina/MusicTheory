@@ -1,4 +1,4 @@
-package com.example.musictheory.ui.home
+package com.example.musictheory.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

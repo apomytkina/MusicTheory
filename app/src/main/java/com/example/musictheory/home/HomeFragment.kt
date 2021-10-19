@@ -1,4 +1,4 @@
-package com.example.musictheory.ui.home
+package com.example.musictheory.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

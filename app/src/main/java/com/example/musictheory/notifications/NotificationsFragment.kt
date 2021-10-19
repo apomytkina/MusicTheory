@@ -1,4 +1,4 @@
-package com.example.musictheory.ui.notifications
+package com.example.musictheory.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater
