@@ -13,8 +13,6 @@ import com.example.musictheory.databinding.FragmentTrainingTestBodyBinding
  * create an instance of this fragment.
  */
 class TrainingTestBodyFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
