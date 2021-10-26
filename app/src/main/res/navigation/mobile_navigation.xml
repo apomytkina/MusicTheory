@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.musictheory.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.example.musictheory.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.musictheory.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+            android:id="@+id/navigation_training_test"
+            android:name="com.example.musictheory.trainingtest.presentation.ui.fragment.TrainingTestFragment"
+            android:label="training_test_fragment"
+            tools:layout="@layout/training_test_fragment" />
+    <navigation android:id="@+id/nestedNavigation"
+            app:startDestination="@id/navigation_training_test">
+        <fragment
+                android:id="@+id/trainingTestHeaderFragment"
+                android:name="com.example.musictheory.trainingtest.presentation.ui.fragment.TrainingTestHeaderFragment"
+                android:label="fragment_training_test_header"
+                tools:layout="@layout/fragment_training_test_header" />
+        <fragment
+                android:id="@+id/trainingTestBodyFragment"
+                android:name="com.example.musictheory.trainingtest.presentation.ui.fragment.TrainingTestBodyFragment"
+                android:label="fragment_training_test_body"
+                tools:layout="@layout/fragment_training_test_body" />
+        <fragment
+                android:id="@+id/trainingTestFooterFragment"
+                android:name="com.example.musictheory.trainingtest.presentation.ui.fragment.TrainingTestFooterFragment"
+                android:label="fragment_training_test_footer"
+                tools:layout="@layout/fragment_training_test_footer" />
+
+    </navigation>
+</navigation>
