@@ -6,7 +6,6 @@ import dagger.hilt.android.HiltAndroidApp
 /**
  * @author Владислав Хвесюк 19.10.2021
  */
-
 @HiltAndroidApp
-class MainApplication : Application() {
+class MainApplication :  Application() {
 }
