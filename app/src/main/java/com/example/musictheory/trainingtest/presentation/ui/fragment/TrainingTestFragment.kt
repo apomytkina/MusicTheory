@@ -69,6 +69,7 @@ class TrainingTestFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onPause() {
         super.onPause()
         if (activity is MainActivityCallback) {
