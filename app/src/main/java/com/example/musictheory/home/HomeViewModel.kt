@@ -3,11 +3,21 @@ package com.example.musictheory.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
+    private val _categories = MutableLiveData<String>().apply {
         value = "This is home Fragment"
     }
-    val text: LiveData<String> = _text
+    val categories: LiveData<String> = _categories
+
+    fun getCategories() = viewModelScope.launch {
+
+    }
+
+    init {
+        getCategories()
+    }
 }
