@@ -1,16 +1,14 @@
 package com.example.musictheory.home
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.musictheory.R
 import com.example.musictheory.databinding.TestCategoryCardBinding
 import androidx.recyclerview.widget.ListAdapter
 
-private val differCallback = object : DiffUtil.ItemCallback<Category>(){
+
+private val differCallback = object : DiffUtil.ItemCallback<Category>() {
     override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
         return oldItem.title == newItem.title
     }
@@ -20,28 +18,30 @@ private val differCallback = object : DiffUtil.ItemCallback<Category>(){
     }
 }
 
-class CategoriesAdapter: ListAdapter<Category, CategoriesAdapter.CategoriesViewHolder>(differCallback) {
-    lateinit var binding1: TestCategoryCardBinding
-    val differ = AsyncListDiffer(this, differCallback)
-
-    inner class CategoriesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
-
+class CategoriesAdapter :
+    ListAdapter<Category, CategoriesAdapter.CategoriesViewHolder>(differCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.test_category_card, parent, false)
-        val binding1 = TestCategoryCardBinding.bind(view)
-        return CategoriesViewHolder(binding1.root)
-    }
-
-    override fun getItemCount(): Int {
-        return differ.currentList.size
+        return CategoriesViewHolder(
+            TestCategoryCardBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
-        val category = differ.currentList[position]
+        holder.bind(getItem(position))
+    }
 
-        holder.itemView.apply {
-            binding1.categoryTitle.text = category.title
+    class CategoriesViewHolder(private val binding: TestCategoryCardBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(data: Category) {
+            with(binding) {
+                categoryTitle.text = data.title
+            }
         }
     }
 }
