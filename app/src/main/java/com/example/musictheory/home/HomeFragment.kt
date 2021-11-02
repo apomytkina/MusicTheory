@@ -8,8 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.musictheory.R
-import com.example.musictheory.trainingtest.presentation.ui.fragment.TrainingTestBodyFragment
-import com.example.musictheory.trainingtest.presentation.ui.fragment.TrainingTestFooterFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,11 +23,11 @@ class HomeFragment : Fragment() {
         homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-        //val textView: TextView = root.findViewById(R.id.text_home)
+        // val textView: TextView = root.findViewById(R.id.text_home)
         homeViewModel.categories.observe(
             viewLifecycleOwner,
             Observer {
-                //textView.text = it
+                // textView.text = it
             }
         )
 

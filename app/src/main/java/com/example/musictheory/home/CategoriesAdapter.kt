@@ -3,10 +3,9 @@ package com.example.musictheory.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musictheory.databinding.TestCategoryCardBinding
-import androidx.recyclerview.widget.ListAdapter
-
 
 private val differCallback = object : DiffUtil.ItemCallback<Category>() {
     override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {

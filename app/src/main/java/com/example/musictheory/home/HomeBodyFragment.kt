@@ -1,20 +1,18 @@
 package com.example.musictheory.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.musictheory.R
 import com.example.musictheory.databinding.FragmentHomeBodyBinding
-import com.example.musictheory.trainingtest.presentation.ui.fragment.TrainingTestHeaderFragment
 
 class HomeBodyFragment : Fragment() {
     lateinit var categoriesAdapter: CategoriesAdapter
     lateinit var homeViewModel: HomeViewModel
 
-    private var _binding: FragmentHomeBodyBinding? =  null
+    private var _binding: FragmentHomeBodyBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +20,8 @@ class HomeBodyFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeBodyBinding.inflate(inflater, container, false)
@@ -33,11 +32,11 @@ class HomeBodyFragment : Fragment() {
         return view
     }
 
-    private fun setUpRecyclerView(){
+    private fun setUpRecyclerView() {
         categoriesAdapter = CategoriesAdapter()
         binding.testCategoryRecyclerView.apply {
             adapter = categoriesAdapter
             layoutManager = LinearLayoutManager(activity)
-         }
+        }
     }
 }

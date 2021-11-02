@@ -14,7 +14,6 @@ class HomeViewModel : ViewModel() {
     val categories: LiveData<String> = _categories
 
     fun getCategories() = viewModelScope.launch {
-
     }
 
     init {
