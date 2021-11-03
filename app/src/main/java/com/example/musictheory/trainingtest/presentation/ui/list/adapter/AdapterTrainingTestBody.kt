@@ -21,7 +21,11 @@ class AdapterTrainingTestBody : RecyclerView.Adapter<ViewHolderTrainingTestBody>
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderTrainingTestBody {
-        val binding = ItemTrainingTestBodyBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemTrainingTestBodyBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return ViewHolderTrainingTestBody(binding)
     }
 

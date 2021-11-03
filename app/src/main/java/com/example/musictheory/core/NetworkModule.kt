@@ -53,7 +53,9 @@ class NetworkModule @Inject constructor() {
 
     @Provides
     @Singleton
-    fun provideMusicEducationApiService(retrofit: Retrofit): MusicEducationApiService = retrofit.create(
+    fun provideMusicEducationApiService(
+        retrofit: Retrofit
+    ): MusicEducationApiService = retrofit.create(
         MusicEducationApiService::class.java
     )
 

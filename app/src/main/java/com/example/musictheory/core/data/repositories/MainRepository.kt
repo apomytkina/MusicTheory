@@ -10,10 +10,18 @@ import javax.inject.Inject
  *
  * Пока работаем через данный класс
  */
-class MainRepository @Inject constructor(private val apiHelper: ApiHelper) {
-    suspend fun getCollectionByName(collectionName: String) = apiHelper.getCollectionByName(collectionName)
+class MainRepository @Inject constructor(
+    private val apiHelper: ApiHelper
+) {
+    suspend fun getCollectionByName(
+        collectionName: String
+    ) = apiHelper.getCollectionByName(collectionName)
 
-    suspend fun postSection(postSection: PostSection) = apiHelper.postSection(postSection)
+    suspend fun postSection(
+        postSection: PostSection
+    ) = apiHelper.postSection(postSection)
 
-    suspend fun postTest(postMusicTest: PostMusicTest) = apiHelper.postTest(postMusicTest)
+    suspend fun postTest(
+        postMusicTest: PostMusicTest
+    ) = apiHelper.postTest(postMusicTest)
 }
