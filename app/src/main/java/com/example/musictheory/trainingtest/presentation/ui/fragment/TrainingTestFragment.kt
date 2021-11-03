@@ -6,21 +6,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.musictheory.R
+import com.example.musictheory.core.data.model.ServerData
 import com.example.musictheory.data.MainActivityCallback
 import com.example.musictheory.databinding.TrainingTestFragmentBinding
 import com.example.musictheory.trainingtest.presentation.ui.viewmodel.TrainingTestViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class TrainingTestFragment : Fragment() {
 
-    private lateinit var trainingTestViewModel: TrainingTestViewModel
+//    private lateinit var trainingTestViewModel: TrainingTestViewModel
 
+    private val trainingTestViewModel: TrainingTestViewModel by viewModels()
     private var _binding: TrainingTestFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -30,7 +36,7 @@ class TrainingTestFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = TrainingTestFragmentBinding.inflate(inflater)
-        trainingTestViewModel = ViewModelProvider(this).get(TrainingTestViewModel::class.java)
+//        trainingTestViewModel = ViewModelProvider(this).get(TrainingTestViewModel::class.java)
 
         trainingTestViewModel.messageHello
             .onEach {
@@ -61,7 +67,19 @@ class TrainingTestFragment : Fragment() {
 
 //        val navController = Navigation.findNavController(binding.root)
 
+        // Вызов запроса к серверу через view model
+        lifecycleScope.launch {
+            val sections = async { trainingTestViewModel.getSections() }
+            showDataFromServer(sections.await())
+        }
+
         return binding.root
+    }
+
+    private suspend fun showDataFromServer(
+        serverData: ServerData
+    ) = withContext(Dispatchers.Main) {
+        Toast.makeText(context, "${serverData.data.length}", Toast.LENGTH_SHORT).show()
     }
 
     override fun onPause() {
