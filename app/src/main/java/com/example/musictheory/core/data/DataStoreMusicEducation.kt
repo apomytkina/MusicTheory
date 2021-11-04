@@ -2,10 +2,10 @@ package com.example.musictheory.core.data
 
 import com.example.musictheory.core.data.model.ServerData
 import com.example.musictheory.core.data.repositories.MainRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  * @author Владислав Хвесюк 02.11.2021
