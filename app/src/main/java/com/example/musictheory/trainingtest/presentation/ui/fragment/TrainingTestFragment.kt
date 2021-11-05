@@ -60,7 +60,10 @@ class TrainingTestFragment : Fragment() {
         }
 
 //        val navController = Navigation.findNavController(binding.root)
-
+//        childFragmentManager.beginTransaction().apply {
+//            add(R.id.full, ResultFragment())
+//            commit()
+//        }
         return binding.root
     }
 
