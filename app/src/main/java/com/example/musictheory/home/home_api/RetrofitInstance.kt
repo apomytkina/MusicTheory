@@ -11,7 +11,10 @@ class RetrofitInstance {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(CategoriesApi::class.java)
+        }
+
+        val api by lazy {
+            retrofit.create(CategoriesApi::class.java)
         }
     }
 }
