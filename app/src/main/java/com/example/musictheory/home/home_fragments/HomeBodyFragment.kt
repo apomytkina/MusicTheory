@@ -1,4 +1,4 @@
-package com.example.musictheory.home
+package com.example.musictheory.home.home_fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.musictheory.databinding.FragmentHomeBodyBinding
+import com.example.musictheory.home.home_adapter.CategoriesAdapter
+import com.example.musictheory.home.home_viewmodel.HomeViewModel
 
 class HomeBodyFragment : Fragment() {
     lateinit var categoriesAdapter: CategoriesAdapter
@@ -26,9 +28,7 @@ class HomeBodyFragment : Fragment() {
     ): View? {
         _binding = FragmentHomeBodyBinding.inflate(inflater, container, false)
         val view = binding.root
-
         setUpRecyclerView()
-
         return view
     }
 

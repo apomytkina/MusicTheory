@@ -1,4 +1,4 @@
-package com.example.musictheory.home
+package com.example.musictheory.home.home_viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
