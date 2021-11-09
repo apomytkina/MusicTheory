@@ -1,27 +1,28 @@
 package com.example.musictheory.core.data.repositories
 
+import com.example.musictheory.core.data.model.ServerData
 import com.example.musictheory.core.domain.api.ApiHelper
-import com.example.musictheory.home.data.model.PostSection
+import com.example.musictheory.core.domain.repository.MainRepository
 import com.example.musictheory.trainingtest.data.model.PostMusicTest
-import javax.inject.Inject
+import retrofit2.Call
 
 /**
  * @author Владислав Хвесюк 02.11.2021
  *
  * Пока работаем через данный класс
  */
-class MainRepository @Inject constructor(
+class MainRepositoryImpl(
     private val apiHelper: ApiHelper
-) {
-    suspend fun getCollectionByName(
+) : MainRepository {
+    override suspend fun getCollectionByName(
         collectionName: String
     ) = apiHelper.getCollectionByName(collectionName)
 
-    suspend fun postSection(
-        postSection: PostSection
-    ) = apiHelper.postSection(postSection)
+    override suspend fun postSection(
+        serverData: ServerData
+    ) = apiHelper.postSection(serverData)
 
-    suspend fun postTest(
+    override suspend fun postTest(
         postMusicTest: PostMusicTest
-    ) = apiHelper.postTest(postMusicTest)
+    ): Call<PostMusicTest> = apiHelper.postTest(postMusicTest)
 }

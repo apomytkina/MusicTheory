@@ -9,13 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.musictheory.R
-import com.example.musictheory.core.data.model.ServerData
-import com.example.musictheory.data.MainActivityCallback
+import com.example.musictheory.core.data.MainActivityCallback
+import com.example.musictheory.core.data.model.ServerResponse
 import com.example.musictheory.databinding.TrainingTestFragmentBinding
 import com.example.musictheory.trainingtest.presentation.ui.viewmodel.TrainingTestViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -36,11 +37,10 @@ class TrainingTestFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = TrainingTestFragmentBinding.inflate(inflater)
-//        trainingTestViewModel = ViewModelProvider(this).get(TrainingTestViewModel::class.java)
 
         trainingTestViewModel.messageHello
             .onEach {
-                Toast.makeText(context, "$it", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, "$it", Toast.LENGTH_SHORT).show()
             }.launchIn(lifecycleScope)
 
         val trainingTestHeaderFragment = TrainingTestHeaderFragment()
@@ -69,17 +69,31 @@ class TrainingTestFragment : Fragment() {
 
         // Вызов запроса к серверу через view model
         lifecycleScope.launch {
-            val sections = async { trainingTestViewModel.getSections() }
-            showDataFromServer(sections.await())
+            val tests = async { trainingTestViewModel.getTests() }
+//            async { trainingTestViewModel.postTest() }
+            trainingTestViewModel.getData(tests.await())
+            showDataFromServer(tests.await())
+        }
+
+        lifecycleScope.launchWhenCreated {
+            trainingTestViewModel.questionString
+                .collect() {
+                    binding.textviewTest.text = it
+                    Toast.makeText(context, " Получено с сервера$it", Toast.LENGTH_SHORT).show()
+                }
         }
 
         return binding.root
     }
 
     private suspend fun showDataFromServer(
-        serverData: ServerData
+        serverResponse: ServerResponse
     ) = withContext(Dispatchers.Main) {
-        Toast.makeText(context, "${serverData.data.length}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            context,
+            "${serverResponse.data.collection.get(0).questionArray[0]}",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     override fun onPause() {

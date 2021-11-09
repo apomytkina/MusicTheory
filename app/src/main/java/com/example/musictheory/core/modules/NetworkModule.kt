@@ -1,9 +1,12 @@
-package com.example.musictheory.core
+package com.example.musictheory.core.modules
 
 import com.example.musictheory.BuildConfig
 import com.example.musictheory.core.data.api.ApiHelperImpl
 import com.example.musictheory.core.data.api.MusicEducationApiService
+import com.example.musictheory.core.data.repositories.DataStoreMusicEducation
+import com.example.musictheory.core.data.repositories.MainRepositoryImpl
 import com.example.musictheory.core.domain.api.ApiHelper
+import com.example.musictheory.core.domain.repository.MainRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -59,9 +62,24 @@ class NetworkModule @Inject constructor() {
         MusicEducationApiService::class.java
     )
 
+    /**
+     * Так понимаю, три метода ниже лучше заменить @Provide на @Bind?
+     */
     @Provides
     @Singleton
     fun provideApiHelper(
         musicEducationApiService: MusicEducationApiService
     ): ApiHelper = ApiHelperImpl(musicEducationApiService)
+
+    @Provides
+    @Singleton
+    fun provideMainRepository(
+        apiHelper: ApiHelper
+    ): MainRepository = MainRepositoryImpl(apiHelper)
+
+    @Provides
+    @Singleton
+    fun provideDataStoreMusicEducation(
+        mainRepository: MainRepository
+    ): DataStoreMusicEducation = DataStoreMusicEducation(mainRepository)
 }

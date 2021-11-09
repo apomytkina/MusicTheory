@@ -1,14 +1,16 @@
 package com.example.musictheory.core.data.model
 
+import com.example.musictheory.trainingtest.data.model.MusicTest
 import com.google.gson.annotations.SerializedName
 
 /**
- * @author Владислав Хвесюк 02.11.2021
+ * @author Владислав Хвесюк 08.11.2021
+ *
+ * Можно попробовать обобщить класс
  */
+
 data class ServerData(
-    /**
-     * Пока что данные в виде String
-     */
-    @SerializedName("data")
-    val data: String
+    @SerializedName("collection_name")
+    val collectionName: String,
+    val collection: List<MusicTest>
 )

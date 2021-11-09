@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musictheory.databinding.ItemTrainingTestBodyBinding
-import com.example.musictheory.trainingtest.presentation.model.Answer
 import com.example.musictheory.trainingtest.presentation.ui.list.viewholder.ViewHolderTrainingTestBody
 
 /**
@@ -13,9 +12,9 @@ import com.example.musictheory.trainingtest.presentation.ui.list.viewholder.View
 
 class AdapterTrainingTestBody : RecyclerView.Adapter<ViewHolderTrainingTestBody>() {
 
-    var data = mutableListOf<Answer>()
+    var data = listOf<String>()
 
-    fun updateData(list: MutableList<Answer>) {
+    fun updateData(list: List<String>) {
         data = list
         notifyDataSetChanged()
     }

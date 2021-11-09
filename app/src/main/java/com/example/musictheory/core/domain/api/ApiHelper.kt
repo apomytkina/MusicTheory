@@ -1,7 +1,7 @@
 package com.example.musictheory.core.domain.api
 
 import com.example.musictheory.core.data.model.ServerData
-import com.example.musictheory.home.data.model.PostSection
+import com.example.musictheory.core.data.model.ServerResponse
 import com.example.musictheory.trainingtest.data.model.PostMusicTest
 import retrofit2.Call
 
@@ -10,9 +10,9 @@ import retrofit2.Call
  */
 
 interface ApiHelper {
-    suspend fun getCollectionByName(collectionName: String): Call<ServerData>
+    suspend fun getCollectionByName(collectionName: String): Call<ServerResponse>
 
-    suspend fun postSection(postSection: PostSection): Call<PostSection>
+    suspend fun postSection(serverData: ServerData): Call<ServerData>
 
     suspend fun postTest(postMusicTest: PostMusicTest): Call<PostMusicTest>
 }

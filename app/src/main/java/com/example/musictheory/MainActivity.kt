@@ -9,9 +9,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.musictheory.core.data.DataStoreMusicEducation
-import com.example.musictheory.core.data.model.ServerData
-import com.example.musictheory.data.MainActivityCallback
+import com.example.musictheory.core.data.MainActivityCallback
+import com.example.musictheory.core.data.model.ServerResponse
+import com.example.musictheory.core.data.repositories.DataStoreMusicEducation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -60,9 +60,13 @@ class MainActivity : AppCompatActivity(), MainActivityCallback {
     }
 
     private suspend fun showDataFromServer(
-        serverData: ServerData
+        serverResponse: ServerResponse
     ) = withContext(Dispatchers.Main) {
-        Toast.makeText(this@MainActivity, "${serverData.data.length}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            this@MainActivity,
+            "${serverResponse.data.collection.size}",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     override fun hideBottomNavigationView() {
