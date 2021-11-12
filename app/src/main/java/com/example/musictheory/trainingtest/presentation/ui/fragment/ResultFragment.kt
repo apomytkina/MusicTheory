@@ -1,18 +1,25 @@
 package com.example.musictheory.trainingtest.presentation.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.example.musictheory.R
 import com.example.musictheory.databinding.FragmentResultBinding
+import com.example.musictheory.model.Mistake
 import com.example.musictheory.model.Result
+import com.example.musictheory.model.Test
+import com.example.musictheory.model.TypeQuestion
+import com.example.musictheory.trainingtest.presentation.ui.viewmodel.ResultViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ResultFragment : Fragment() {
 
+    private val viewModel: ResultViewModel by viewModels()
     private var _binding: FragmentResultBinding? = null
     private val binding get() = _binding!!
 
@@ -27,8 +34,21 @@ class ResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.progress.numStars = 5
-        binding.progress.progress = 2
+
+        viewModel.result.observe(viewLifecycleOwner, { result ->
+                Log.d("xxx", "res $result")
+            getTest(result)
+        })
+
+        arguments?.let {
+            val id = it.getInt(ARG_ID_RESULT)
+            Log.d("xxx", "id $id")
+            viewModel.getResultById(id)
+        }
+    }
+    private fun insertTestData() {
+        viewModel.saveTest(Test(0, 0, listOf("are you "), listOf("yes"), TypeQuestion.SIMPLE))
+        viewModel.saveResult(Result(1, 0, 1, listOf(Mistake(1, listOf("ошибка", "ошибка"))) ))
     }
 
     override fun onDestroyView() {
@@ -36,8 +56,17 @@ class ResultFragment : Fragment() {
         _binding = null
     }
 
-    private fun setData(result: Result) {
+    private fun getTest(result: Result) {
+        viewModel.test.observe(viewLifecycleOwner, { test ->
+            setData(result, test)
+        })
+        viewModel.getTestById(result.idTest)
+    }
 
+    private fun setData(result: Result, test: Test) {
+        val allCount = test.questions.size
+        binding.tvCorrectCount.text = requireContext().getString(R.string.result_from, (allCount - result.mistakeCount), allCount)
+        binding.progress.progress = (allCount - result.mistakeCount) / allCount
     }
 
     companion object {
