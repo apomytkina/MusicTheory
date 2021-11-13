@@ -1,19 +1,28 @@
 package com.example.musictheory.home.home_viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.musictheory.home.home_model.Collection
+import com.example.musictheory.home.home_repository.CategoriesRepository
 import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(
+    private val repository: CategoriesRepository
+) : ViewModel() {
 
-    private val _categories = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val categories: LiveData<String> = _categories
+    private val _categories = MutableLiveData<List<Collection>>()
+    val categories: LiveData<List<Collection>> = _categories
 
-    fun getCategories() = viewModelScope.launch {
+    private fun getCategories() = viewModelScope.launch {
+        repository.getCategories().let { response ->
+            if (response.isSuccessful && response.body() != null)
+                _categories.postValue(response.body()!!.data.collection)
+            else
+                Log.d("tag", "getCategories Error: ${response.code()}")
+        }
     }
 
     init {

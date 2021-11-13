@@ -1,14 +1,14 @@
 package com.example.musictheory.home
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.musictheory.home.home_model.Category
+import com.example.musictheory.home.home_model.Collection
 
-val differCallback = object : DiffUtil.ItemCallback<Category>() {
-    override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
-        return oldItem.title == newItem.title
+val differCallback = object : DiffUtil.ItemCallback<Collection>() {
+    override fun areItemsTheSame(oldItem: Collection, newItem: Collection): Boolean {
+        return oldItem.name == newItem.name
     }
 
-    override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean {
+    override fun areContentsTheSame(oldItem: Collection, newItem: Collection): Boolean {
         return oldItem == newItem
     }
 }

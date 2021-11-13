@@ -32,24 +32,6 @@ class HomeFragment : Fragment() {
             }
         )
 
-        val homeHeaderFragment = HomeHeaderFragment()
-        childFragmentManager.beginTransaction().apply {
-            add(R.id.home_header, homeHeaderFragment)
-            commit()
-        }
-
-        val homeBodyFragment = HomeBodyFragment()
-        childFragmentManager.beginTransaction().apply {
-            add(R.id.home_body, homeBodyFragment)
-            commit()
-        }
-
-        val homeFooterFragment = HomeFooterFragment()
-        childFragmentManager.beginTransaction().apply {
-            add(R.id.home_footer, homeFooterFragment)
-            commit()
-        }
-
         return root
     }
 }

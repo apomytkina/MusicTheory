@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.musictheory.databinding.TestCategoryCardBinding
-import com.example.musictheory.home.home_model.Category
 import com.example.musictheory.home.differCallback
+import com.example.musictheory.home.home_model.Collection
 
 class CategoriesAdapter :
-    ListAdapter<Category, CategoriesViewHolder>(differCallback) {
+    ListAdapter<Collection, CategoriesViewHolder>(differCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
         return CategoriesViewHolder(

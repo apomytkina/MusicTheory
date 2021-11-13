@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.musictheory.databinding.FragmentHomeBodyBinding
 import com.example.musictheory.home.home_adapter.CategoriesAdapter
@@ -29,6 +30,15 @@ class HomeBodyFragment : Fragment() {
         _binding = FragmentHomeBodyBinding.inflate(inflater, container, false)
         val view = binding.root
         setUpRecyclerView()
+
+        homeViewModel.categories.observe(
+            viewLifecycleOwner,
+            Observer { response ->
+                binding.apply {
+                }
+            }
+        )
+
         return view
     }
 
