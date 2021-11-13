@@ -10,5 +10,5 @@ interface CategoriesApi {
     suspend fun getCategories(
         @Query("collection_name")
         collectionName: String = "sections"
-    ) : Response<SectionsCollection>
+    ): Response<SectionsCollection>
 }
