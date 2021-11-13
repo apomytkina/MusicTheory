@@ -1,4 +1,4 @@
-package com.example.musictheory.data
+package com.example.musictheory.core.data
 
 /**
  * @author Владислав Хвесюк 26.10.2021
