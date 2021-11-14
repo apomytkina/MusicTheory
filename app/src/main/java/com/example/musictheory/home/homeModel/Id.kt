@@ -1,5 +1,8 @@
 package com.example.musictheory.home.homeModel
 
+import com.google.gson.annotations.SerializedName
+
 data class Id(
-    val `$oid`: String
+    @SerializedName("`\$oid`")
+    val oid: String
 )
