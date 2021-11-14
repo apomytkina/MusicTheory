@@ -9,7 +9,7 @@
     <LinearLayout
             android:id="@+id/home_header"
             android:orientation="vertical"
-            android:layout_width="@dimen/home_layout_width"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/home_layout_height"
             app:layout_constraintBottom_toTopOf="@+id/header_gl"
             app:layout_constraintTop_toTopOf="parent"
@@ -26,7 +26,7 @@
     <LinearLayout
             android:id="@+id/home_body"
             android:orientation="vertical"
-            android:layout_width="@dimen/home_layout_width"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/home_layout_height"
             app:layout_constraintBottom_toTopOf="@+id/footer_gl"
             app:layout_constraintTop_toBottomOf="@+id/home_header"
@@ -44,7 +44,7 @@
     <LinearLayout
             android:id="@+id/home_footer"
             android:orientation="vertical"
-            android:layout_width="@dimen/home_layout_width"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/home_layout_height"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home_body"
