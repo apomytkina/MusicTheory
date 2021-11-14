@@ -1,12 +1,13 @@
 package com.example.musictheory.data.database
 
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.musictheory.model.Result
 import com.example.musictheory.model.Test
 import kotlinx.coroutines.flow.Flow
 
-
+@Dao
 interface ResultsDao {
 
     @Insert
