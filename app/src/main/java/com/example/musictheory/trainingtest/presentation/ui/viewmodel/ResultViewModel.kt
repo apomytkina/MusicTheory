@@ -27,19 +27,19 @@ class ResultViewModel @Inject constructor(
         get() = _test
 
     fun saveResult(result: Result) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             repository.local.saveResult(result)
         }
     }
 
     fun saveTest(test: Test) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             repository.local.saveTest(test)
         }
     }
 
     fun getResultById(id: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             repository.local.getResultById(id).collect { results ->
                 _result.postValue(results[0])
             }
@@ -47,7 +47,7 @@ class ResultViewModel @Inject constructor(
     }
 
     fun getTestById(id: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             repository.local.getTestById(id).collect { tests ->
                 _test.postValue(tests[0])
             }

@@ -65,6 +65,30 @@ class TrainingTestFragment : Fragment() {
             (activity as MainActivityCallback).hideBottomNavigationView()
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //        val navController = Navigation.findNavController(binding.root)
 
         // Вызов запроса к серверу через view model
