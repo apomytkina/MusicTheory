@@ -27,6 +27,6 @@ class ResultConverter {
     @TypeConverter
     fun fromMistakesToList(str: String): List<Mistake> {
         val listType = object : TypeToken<List<Mistake>>() {}.type
-        return  gson.fromJson(str, listType)
+        return gson.fromJson(str, listType)
     }
 }

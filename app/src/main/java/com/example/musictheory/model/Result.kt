@@ -6,15 +6,16 @@ import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
 import androidx.room.PrimaryKey
 
-
 @Entity(
     tableName = "results",
-    foreignKeys = [ForeignKey(
-        entity = Test::class,
-        parentColumns = ["id"],
-        childColumns = ["id_test"],
-        onDelete = CASCADE
-    )]
+    foreignKeys = [
+        ForeignKey(
+            entity = Test::class,
+            parentColumns = ["id"],
+            childColumns = ["id_test"],
+            onDelete = CASCADE
+        )
+    ]
 )
 data class Result(
     @PrimaryKey

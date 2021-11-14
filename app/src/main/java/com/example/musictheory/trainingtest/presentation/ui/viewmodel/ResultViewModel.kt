@@ -8,10 +8,9 @@ import com.example.musictheory.data.Repository
 import com.example.musictheory.model.Result
 import com.example.musictheory.model.Test
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class ResultViewModel @Inject constructor(

@@ -5,10 +5,10 @@ import androidx.room.PrimaryKey
 
 data class Section(
     @PrimaryKey
-    @ColumnInfo(name ="id")
+    @ColumnInfo(name = "id")
     val id: Int,
-    @ColumnInfo(name ="name")
+    @ColumnInfo(name = "name")
     val name: String,
-    @ColumnInfo(name ="img_src")
+    @ColumnInfo(name = "img_src")
     val imgSrc: String
 )

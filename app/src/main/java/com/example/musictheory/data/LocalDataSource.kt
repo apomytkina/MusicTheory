@@ -3,10 +3,10 @@ package com.example.musictheory.data
 import com.example.musictheory.data.database.ResultsDao
 import com.example.musictheory.model.Result
 import com.example.musictheory.model.Test
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(
     private val resultsDao: ResultsDao
