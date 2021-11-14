@@ -59,6 +59,30 @@ class TrainingTestFragment : Fragment() {
             (activity as MainActivityCallback).hideBottomNavigationView()
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //        val navController = Navigation.findNavController(binding.root)
 //        childFragmentManager.beginTransaction().apply {
 //            add(R.id.full, TempFragment())
