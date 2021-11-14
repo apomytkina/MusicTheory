@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:background="#E9E8F1"
+        tools:context=".trainingtest.presentation.ui.fragment.ResultFragment">
+
+    <ImageButton
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_chevron_left"
+            android:minWidth="48dp"
+            android:minHeight="48dp" />
+
+    <com.google.android.material.card.MaterialCardView
+            android:layout_marginTop="100dp"
+            android:layout_width="match_parent"
+            android:backgroundTint="#FF8F5E"
+            app:cardCornerRadius="20dp"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="36dp"
+                android:paddingBottom="18dp">
+
+            <TextView
+                    android:textSize="28sp"
+                    android:layout_marginTop="36dp"
+                    android:textColor="#1B1464"
+                    android:gravity="center"
+                    android:id="@+id/label_finished"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Тест пройден" />
+
+            <TextView
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:id="@+id/label_correct_parts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_marginTop="10dp"
+                    android:text="Правильных тестов" />
+
+            <TextView
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="28sp"
+                    android:id="@+id/tv_correct_count"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="6 из 66" />
+
+            <RatingBar
+                    android:id="@+id/progress"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    style="@style/CustomRatingBar"
+                    android:stepSize="1"
+                    android:numStars="5" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+            android:gravity="center"
+            android:id="@+id/label_available"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_marginTop="46dp"
+            android:text="Теперь доступны тесты:" />
+
+    <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF8F5E"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:layout_marginTop="27dp"
+            android:text="Уменьшенные квинты" />
+
+    <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF8F5E"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:layout_marginTop="27dp"
+            android:textSize="18sp"
+            android:text="Увеличенные кварты" />
+</LinearLayout>
