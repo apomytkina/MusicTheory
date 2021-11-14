@@ -4,17 +4,15 @@ import com.example.musictheory.home.homeUtil.Constants.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitInstance {
-    companion object {
-        private val retrofit by lazy {
+object RetrofitInstance {
+    private val retrofit by lazy {
             Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
 
-        val api by lazy {
-            retrofit.create(CategoriesApi::class.java)
-        }
+    val api by lazy {
+        retrofit.create(CategoriesApi::class.java)
     }
 }
