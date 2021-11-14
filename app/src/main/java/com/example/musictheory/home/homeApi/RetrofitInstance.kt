@@ -1,6 +1,6 @@
-package com.example.musictheory.home.home_api
+package com.example.musictheory.home.homeApi
 
-import com.example.musictheory.home.home_util.Constants.BASE_URL
+import com.example.musictheory.home.homeUtil.Constants.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

@@ -1,6 +1,6 @@
-package com.example.musictheory.home.home_api
+package com.example.musictheory.home.homeApi
 
-import com.example.musictheory.home.home_model.SectionsCollection
+import com.example.musictheory.home.homeModel.SectionsCollection
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

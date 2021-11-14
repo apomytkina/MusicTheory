@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.musictheory.databinding.FragmentHomeBodyBinding
-import com.example.musictheory.home.home_adapter.CategoriesAdapter
-import com.example.musictheory.home.home_viewmodel.HomeViewModel
+import com.example.musictheory.home.homeAdapter.CategoriesAdapter
+import com.example.musictheory.home.homeViewModel.HomeViewModel
 
 class HomeBodyFragment : Fragment() {
     lateinit var categoriesAdapter: CategoriesAdapter

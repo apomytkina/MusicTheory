@@ -1,4 +1,4 @@
-package com.example.musictheory.home.home_model
+package com.example.musictheory.home.homeModel
 
 data class Data(
     val collection: List<Collection>,
