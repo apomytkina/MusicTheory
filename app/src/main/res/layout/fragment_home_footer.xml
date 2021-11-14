@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/secondColor"
-        android:name="com.example.musictheory.home.home_fragments.HomeFooterFragment"
-        tools:context=".home.home_fragments.HomeFooterFragment">
+        android:name="com.example.musictheory.home.homeFragments.HomeFooterFragment"
+        tools:context=".home.homeFragments.HomeFooterFragment">
 
 </androidx.fragment.app.FragmentContainerView>

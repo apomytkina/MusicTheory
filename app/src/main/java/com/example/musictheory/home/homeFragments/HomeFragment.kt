@@ -1,4 +1,4 @@
-package com.example.musictheory.home.home_fragments
+package com.example.musictheory.home.homeFragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
