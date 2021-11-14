@@ -14,4 +14,6 @@
     <color name="mainBgColor">#FFFFFF</color>
     <color name="secondColor">#FF8F5E</color>
     <color name="thirdColor">#3700B3</color>
+    <color name="white_background">#E9E8F1</color>
+    <color name="primary_color">#FF8F5E</color>
 </resources>
