@@ -29,12 +29,15 @@ class HomeBodyFragment : Fragment() {
     ): View? {
         _binding = FragmentHomeBodyBinding.inflate(inflater, container, false)
         val view = binding.root
+        categoriesAdapter = CategoriesAdapter()
+
         setUpRecyclerView()
 
         homeViewModel.categories.observe(
             viewLifecycleOwner,
             Observer { response ->
                 binding.apply {
+                    categoriesAdapter.submitList(response)
                 }
             }
         )
@@ -43,9 +46,8 @@ class HomeBodyFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
-        categoriesAdapter = CategoriesAdapter()
         binding.testCategoryRecyclerView.apply {
-            adapter = categoriesAdapter
+            adapter = CategoriesAdapter()
             layoutManager = LinearLayoutManager(activity)
         }
     }

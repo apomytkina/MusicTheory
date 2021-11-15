@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".home.homeFragments.HomeFragment">
 
-    <LinearLayout
+    <androidx.fragment.app.FragmentContainerView
             android:id="@+id/home_header"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="@dimen/home_layout_height"
+            android:name="com.example.musictheory.home.homeFragments.HomeHeaderFragment"
             app:layout_constraintBottom_toTopOf="@+id/header_gl"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -20,14 +21,14 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintGuide_percent="0.15"
-            />
+            app:layout_constraintGuide_percent="0.15" />
 
-    <LinearLayout
+    <androidx.fragment.app.FragmentContainerView
             android:id="@+id/home_body"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="@dimen/home_layout_height"
+            android:name="com.example.musictheory.home.homeFragments.HomeBodyFragment"
             app:layout_constraintBottom_toTopOf="@+id/footer_gl"
             app:layout_constraintTop_toBottomOf="@+id/home_header"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,14 +39,14 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintGuide_percent="0.85"
-            />
+            app:layout_constraintGuide_percent="0.85" />
 
-    <LinearLayout
+    <androidx.fragment.app.FragmentContainerView
             android:id="@+id/home_footer"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="@dimen/home_layout_height"
+            android:name="com.example.musictheory.home.homeFragments.HomeFooterFragment"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home_body"
             app:layout_constraintStart_toStartOf="parent"
