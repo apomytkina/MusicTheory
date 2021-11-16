@@ -12,7 +12,9 @@ import com.example.musictheory.trainingtest.presentation.ui
  * @author Владислав Хвесюк 31.10.2021
  */
 
-class AdapterTrainingTestBody(onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<ViewHolderTrainingTestBody>() {
+class AdapterTrainingTestBody(
+    onItemClickListener: OnItemClickListener
+) : RecyclerView.Adapter<ViewHolderTrainingTestBody>() {
 
     var data = listOf<String>()
 

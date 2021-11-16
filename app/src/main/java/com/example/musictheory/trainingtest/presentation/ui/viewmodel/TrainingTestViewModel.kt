@@ -63,9 +63,14 @@ class TrainingTestViewModel @Inject constructor() :
 
     fun getData(serverResponse: ServerResponseMusicTest) {
         _serverResponseCollection.value = serverResponse.data.collection[0]
-        _currentRightAnswer.value = _serverResponseCollection.value.answerArray[_currentQuestionNum.value][0]
-        _answersList.value = _serverResponseCollection.value.answerArray[_currentQuestionNum.value].shuffled()
-        _questionString.value = _serverResponseCollection.value.questionArray[_currentQuestionNum.value]
+        _currentRightAnswer.value = _serverResponseCollection
+            .value.answerArray[_currentQuestionNum.value][0]
+
+        _answersList.value = _serverResponseCollection
+            .value.answerArray[_currentQuestionNum.value].shuffled()
+
+        _questionString.value = _serverResponseCollection
+            .value.questionArray[_currentQuestionNum.value]
 
 //        _answersList.value = serverResponse.data.collection[0].answerArray[0]
 //        _questionString.emit(serverResponse.data.collection[0].questionArray[0])
@@ -76,8 +81,12 @@ class TrainingTestViewModel @Inject constructor() :
         if (_currentQuestionNum.value > _serverResponseCollection.value.questionArray.size) {
             return
         } else {
-            _answersList.value = _serverResponseCollection.value.answerArray[_currentQuestionNum.value]
-            _questionString.value = _serverResponseCollection.value.questionArray[_currentQuestionNum.value]
+            _answersList.value = _serverResponseCollection
+                .value.answerArray[_currentQuestionNum.value]
+
+            _questionString.value = _serverResponseCollection
+                .value.questionArray[_currentQuestionNum.value]
+
             _goNextEvent.value = true
         }
     }
