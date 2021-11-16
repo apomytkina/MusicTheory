@@ -45,6 +45,11 @@ class HomeBodyFragment : Fragment() {
         return view
     }
 
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
+
     private fun setUpRecyclerView() {
         binding.testCategoryRecyclerView.apply {
             adapter = CategoriesAdapter()

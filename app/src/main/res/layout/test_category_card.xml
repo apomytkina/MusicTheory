@@ -5,8 +5,7 @@
         android:layout_height="75dp">
 
     <TextView
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:textAppearance="@style/CategoryCardText"
             android:id="@+id/category_title"
             android:text="@string/category_title"
             android:layout_width="match_parent"

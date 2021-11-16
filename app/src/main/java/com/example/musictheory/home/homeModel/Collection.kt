@@ -7,5 +7,6 @@ data class Collection(
     val id: Id,
     @SerializedName("ing_src")
     val imgSrc: String,
+    @SerializedName("name")
     val name: String
 )

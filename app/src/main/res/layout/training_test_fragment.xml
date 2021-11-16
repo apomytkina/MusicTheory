@@ -9,10 +9,6 @@
         android:layout_height="match_parent"
         tools:context=".trainingtest.presentation.ui.fragment.TrainingTestFragment">
 
-
-
-
-
     <androidx.constraintlayout.widget.Guideline
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -29,7 +25,6 @@
             app:layout_constraintBottom_toBottomOf="@id/guidelineHeader"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
 
     <LinearLayout
             android:id="@+id/bodyTrainingTest"

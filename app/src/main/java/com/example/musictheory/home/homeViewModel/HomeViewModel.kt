@@ -18,8 +18,9 @@ class HomeViewModel(
 
     private fun getCategories() = viewModelScope.launch {
         repository.getCategories().let { response ->
-            if (response.isSuccessful && response.body() != null)
-                _categories.postValue(response.body()!!.data.collection)
+            val responseCollection = response.body()
+            if (response.isSuccessful && responseCollection != null)
+                _categories.postValue(responseCollection.data.collection)
             else
                 Log.d("tag", "getCategories Error: ${response.code()}")
         }
