@@ -1,7 +1,7 @@
 package com.example.musictheory.core.modules
 
-import com.example.ExecutorBuildType
 import com.example.musictheory.BuildConfig
+import com.example.musictheory.ExecutorBuildType
 import com.example.musictheory.core.data.api.ApiHelperImpl
 import com.example.musictheory.core.data.api.MusicEducationApiService
 import com.example.musictheory.core.data.repositories.DataStoreMusicEducation
