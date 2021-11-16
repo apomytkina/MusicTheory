@@ -10,4 +10,5 @@
     <dimen name="medium_margin">27dp</dimen>
     <dimen name="medium_padding">18dp</dimen>
     <dimen name="size_image">48dp</dimen>
+    <dimen name="home_layout_height">0dp</dimen>
 </resources>
