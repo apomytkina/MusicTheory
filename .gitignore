@@ -9,3 +9,7 @@
 .externalNativeBuild
 .cxx
 
+.idea/
+codeStyles/
+Project.xml
+
