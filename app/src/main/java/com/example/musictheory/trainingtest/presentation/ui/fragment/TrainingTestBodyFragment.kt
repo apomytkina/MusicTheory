@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.musictheory.R
 import com.example.musictheory.databinding.FragmentTrainingTestBodyBinding
 import com.example.musictheory.trainingtest.presentation.ui.list.adapter.AdapterTrainingTestBody
+import com.example.musictheory.trainingtest.presentation.ui.list.viewholder.OnItemClickListener
 import com.example.musictheory.trainingtest.presentation.ui.viewmodel.TrainingTestViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -20,9 +22,10 @@ import kotlinx.coroutines.flow.collect
  * create an instance of this fragment.
  */
 @AndroidEntryPoint
-class TrainingTestBodyFragment : Fragment() {
+class TrainingTestBodyFragment : Fragment(), OnItemClickListener {
 
-    private val trainingTestViewModel: TrainingTestViewModel by viewModels()
+    private val trainingTestViewModel: TrainingTestViewModel
+    by hiltNavGraphViewModels<TrainingTestViewModel>(R.id.nested_navigation_training_test)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,22 +33,26 @@ class TrainingTestBodyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentTrainingTestBodyBinding.inflate(inflater)
-        binding.signList.layoutManager = LinearLayoutManager(context)
-        val adapter = AdapterTrainingTestBody()
-        adapter.updateData(listOf("1", "2"))
+        val adapter = AdapterTrainingTestBody(this)
+
+//        adapter.updateData(listOf("1", "2"))
         binding.signList.adapter = adapter
 
-        lifecycleScope.launchWhenCreated {
+        lifecycleScope.launchWhenResumed {
             trainingTestViewModel.answersList
                 .collect {
-                    /** Почему-то не отслеживает изменения
-                     * Пробовал разные варианты, например брать lifecycle вью модели,
-                     * менял на SharedStateFlow, но результат один.
-                     */
                     adapter.updateData(it)
                 }
         }
 
         return binding.root
+    }
+
+    override fun onItemClick(item: String) {
+        if (item == trainingTestViewModel.currentRightAnswer.value) {
+            trainingTestViewModel.goNext()
+        } else {
+            Toast.makeText(context, "Неправильно", Toast.LENGTH_SHORT).show()
+        }
     }
 }

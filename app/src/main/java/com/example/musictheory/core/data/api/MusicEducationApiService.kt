@@ -3,6 +3,7 @@ package com.example.musictheory.core.data.api
 import com.example.musictheory.core.data.model.ServerData
 import com.example.musictheory.core.data.model.ServerResponse
 import com.example.musictheory.trainingtest.data.model.PostMusicTest
+import com.example.musictheory.trainingtest.data.model.ServerResponseMusicTest
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -18,6 +19,11 @@ interface MusicEducationApiService {
     fun getCollectionByName(
         @Query("collection_name") collectionName: String
     ): Call<ServerResponse>
+
+    @GET("get_data")
+    fun getMusicTest(
+        @Query("collection_name") collectionName: String
+    ): Call<ServerResponseMusicTest>
 
     @POST("put_data/")
     fun postSection(@Body serverData: ServerData): Call<ServerData>

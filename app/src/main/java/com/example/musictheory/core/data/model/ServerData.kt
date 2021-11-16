@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 /**
  * @author Владислав Хвесюк 08.11.2021
  *
- * Можно попробовать обобщить класс
+ * Не используется. Каждый пишет свои модель в своей папке
  */
 
 data class ServerData(

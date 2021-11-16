@@ -13,4 +13,24 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+
+    <style name="MyTheme.MusicTheory" parent="Theme.MusicTheory">
+        <item name="colorPrimary">@color/firstColor</item>
+        <item name="colorSecondary">@color/secondColor</item>
+
+        <item name="android:radius">16dp</item>
+
+        <item name="fontFamily">Roboto</item>
+
+        <item name="android:textSize">13sp</item>
+
+        <item name="android:letterSpacing">0.01</item>
+
+    </style>
+
+
+
+
+
 </resources>

@@ -3,6 +3,7 @@ package com.example.musictheory.core.domain.api
 import com.example.musictheory.core.data.model.ServerData
 import com.example.musictheory.core.data.model.ServerResponse
 import com.example.musictheory.trainingtest.data.model.PostMusicTest
+import com.example.musictheory.trainingtest.data.model.ServerResponseMusicTest
 import retrofit2.Call
 
 /**
@@ -11,6 +12,8 @@ import retrofit2.Call
 
 interface ApiHelper {
     suspend fun getCollectionByName(collectionName: String): Call<ServerResponse>
+
+    suspend fun getMusicTest(collectionName: String): Call<ServerResponseMusicTest>
 
     suspend fun postSection(serverData: ServerData): Call<ServerData>
 

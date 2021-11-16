@@ -4,15 +4,23 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musictheory.databinding.ItemTrainingTestBodyBinding
-import com.example.musictheory.trainingtest.presentation.ui.list.viewholder.ViewHolderTrainingTestBody
+import com.example.musictheory.trainingtest.presentation.ui.list.viewholder.OnItemClickListener
+import com.example.musictheory.trainingtest.presentation.ui
+    .list.viewholder.ViewHolderTrainingTestBody
 
 /**
  * @author Владислав Хвесюк 31.10.2021
  */
 
-class AdapterTrainingTestBody : RecyclerView.Adapter<ViewHolderTrainingTestBody>() {
+class AdapterTrainingTestBody(onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<ViewHolderTrainingTestBody>() {
 
     var data = listOf<String>()
+
+    private var mOnItemClickListener: OnItemClickListener = onItemClickListener
+
+//    fun setOnItemClickListener(onItemClickListener: OnItemClickListener) {
+//        mOnItemClickListener = onItemClickListener
+//    }
 
     fun updateData(list: List<String>) {
         data = list
@@ -29,7 +37,7 @@ class AdapterTrainingTestBody : RecyclerView.Adapter<ViewHolderTrainingTestBody>
     }
 
     override fun onBindViewHolder(holder: ViewHolderTrainingTestBody, position: Int) {
-        holder.bind(data[position])
+        holder.bind(data[position], mOnItemClickListener)
     }
 
     override fun getItemCount(): Int {

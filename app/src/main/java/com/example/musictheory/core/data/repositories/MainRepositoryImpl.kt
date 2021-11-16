@@ -18,6 +18,10 @@ class MainRepositoryImpl(
         collectionName: String
     ) = apiHelper.getCollectionByName(collectionName)
 
+    override suspend fun getMusicTest(
+        collectionName: String
+    ) = apiHelper.getMusicTest(collectionName)
+
     override suspend fun postSection(
         serverData: ServerData
     ) = apiHelper.postSection(serverData)

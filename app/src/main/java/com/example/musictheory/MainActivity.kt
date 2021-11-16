@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -16,8 +15,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
@@ -46,17 +43,17 @@ class MainActivity : AppCompatActivity(), MainActivityCallback {
                 R.id.navigation_home,
                 R.id.navigation_dashboard,
                 R.id.navigation_notifications,
-                R.id.navigation_training_test
+                R.id.action_navigation_home_to_nested_navigation_training_test
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
         // Также можно использовать способ, как в TrainingTestViewModel
-        lifecycleScope.launch {
-            val sections = async { dataStoreMusicEducation.getTests() }
-            showDataFromServer(sections.await())
-        }
+//        lifecycleScope.launch {
+//            val sections = async { dataStoreMusicEducation.getTests() }
+//            showDataFromServer(sections.await())
+//        }
     }
 
     private suspend fun showDataFromServer(

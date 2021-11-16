@@ -1,10 +1,10 @@
 package com.example.musictheory.trainingtest.domain.usecases
 
-import com.example.musictheory.core.data.model.ServerResponse
 import com.example.musictheory.core.domain.repository.MainRepository
 import com.example.musictheory.core.domain.usecases.MainInteractor
 import com.example.musictheory.trainingtest.data.model.MusicTest
 import com.example.musictheory.trainingtest.data.model.PostMusicTest
+import com.example.musictheory.trainingtest.data.model.ServerResponseMusicTest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -14,8 +14,8 @@ import kotlinx.coroutines.withContext
 class TrainingTestInteractor(
     private val mainRepository: MainRepository
 ) : MainInteractor {
-    suspend fun getTests(): ServerResponse = withContext(Dispatchers.IO) {
-        return@withContext mainRepository.getCollectionByName("tests")
+    suspend fun getTests(): ServerResponseMusicTest = withContext(Dispatchers.IO) {
+        return@withContext mainRepository.getMusicTest("tests")
             .execute().body() ?: error("not found")
     }
 
@@ -25,10 +25,13 @@ class TrainingTestInteractor(
                 "tests",
                 listOf(
                     MusicTest(
-                        "4",
-                        listOf("question4"),
-                        listOf("answer4"),
-                        listOf("displayed4")
+                        "1",
+                        listOf("Какие знаки в ля мажоре", "Сколько знаков в ля мажоре"),
+                        listOf(
+                            listOf("диезы", "бемоли"),
+                            listOf("3", "0", "1", "2", "4", "5", "6", "7")
+                        ),
+                        listOf("none", "stave")
                     )
                 )
             )

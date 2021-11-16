@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.commit
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.musictheory.R
 import com.example.musictheory.core.data.MainActivityCallback
@@ -17,17 +18,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class TrainingTestFragment : Fragment() {
 
-//    private lateinit var trainingTestViewModel: TrainingTestViewModel
-
-    private val trainingTestViewModel: TrainingTestViewModel by viewModels()
+    private val trainingTestViewModel: TrainingTestViewModel
+    by hiltNavGraphViewModels<TrainingTestViewModel>(R.id.nested_navigation_training_test)
     private var _binding: TrainingTestFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -38,11 +36,47 @@ class TrainingTestFragment : Fragment() {
     ): View {
         _binding = TrainingTestFragmentBinding.inflate(inflater)
 
-        trainingTestViewModel.messageHello
-            .onEach {
-//                Toast.makeText(context, "$it", Toast.LENGTH_SHORT).show()
-            }.launchIn(lifecycleScope)
+        initNestedFragments()
 
+        // Вызов запроса к серверу через view model
+        lifecycleScope.launch {
+            val tests = async { trainingTestViewModel.getTests() }
+//            val post = async { trainingTestViewModel.postTest() }
+            trainingTestViewModel.getData(tests.await())
+//            showDataFromServer(tests.await())
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            trainingTestViewModel.goNextEvent
+                .collect {
+                    if (it) {
+                        var nextBodyFragment: Fragment? = null
+                        when (trainingTestViewModel.displayedElements.value) {
+                            "none" -> {
+                                nextBodyFragment =
+                                    TrainingTestBodyWithStaveFragment()
+                            }
+                            "stave" -> {
+                                nextBodyFragment =
+                                    TrainingTestBodyWithStaveFragment()
+                            }
+                        }
+                        if (nextBodyFragment != null) {
+                            childFragmentManager.commit {
+                                replace(
+                                    R.id.bodyTrainingTest,
+                                    nextBodyFragment
+                                )
+                            }
+                        }
+                    }
+                }
+        }
+
+        return binding.root
+    }
+
+    private fun initNestedFragments() {
         val trainingTestHeaderFragment = TrainingTestHeaderFragment()
         childFragmentManager.beginTransaction().apply {
             add(R.id.headerTrainingTest, trainingTestHeaderFragment)
@@ -64,26 +98,6 @@ class TrainingTestFragment : Fragment() {
         if (activity is MainActivityCallback) {
             (activity as MainActivityCallback).hideBottomNavigationView()
         }
-
-//        val navController = Navigation.findNavController(binding.root)
-
-        // Вызов запроса к серверу через view model
-        lifecycleScope.launch {
-            val tests = async { trainingTestViewModel.getTests() }
-//            async { trainingTestViewModel.postTest() }
-            trainingTestViewModel.getData(tests.await())
-            showDataFromServer(tests.await())
-        }
-
-        lifecycleScope.launchWhenCreated {
-            trainingTestViewModel.questionString
-                .collect() {
-                    binding.textviewTest.text = it
-                    Toast.makeText(context, " Получено с сервера$it", Toast.LENGTH_SHORT).show()
-                }
-        }
-
-        return binding.root
     }
 
     private suspend fun showDataFromServer(

@@ -2,6 +2,7 @@ package com.example.musictheory.core.domain.repository
 import com.example.musictheory.core.data.model.ServerData
 import com.example.musictheory.core.data.model.ServerResponse
 import com.example.musictheory.trainingtest.data.model.PostMusicTest
+import com.example.musictheory.trainingtest.data.model.ServerResponseMusicTest
 import retrofit2.Call
 
 /**
@@ -9,12 +10,9 @@ import retrofit2.Call
  */
 
 interface MainRepository {
-    /**
-     * Пока возвращает только tests, потому что требуется обобщение класса ServerResponse,
-     *
-     * либо создание еще классов
-     */
     suspend fun getCollectionByName(collectionName: String): Call<ServerResponse>
+
+    suspend fun getMusicTest(collectionName: String): Call<ServerResponseMusicTest>
 
     suspend fun postSection(
         serverData: ServerData

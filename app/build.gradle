@@ -22,10 +22,32 @@ android {
         buildConfigField 'String', 'BASE_URL', "\"https://music--education.herokuapp.com/api/\""
     }
 
+    /**
+     * Инициализации Timber, OkHttpClient и StrictMode
+     * теперь в классах ExecutorBuildType в соответствующих папках
+     * (Смотреть через Project, либо будет видна только папка для текущей сборки)
+     */
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        /**
+         * src/debug/java/com/example/ExecutorBuildType
+         */
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+        }
+
+        /**
+         * В этой сборке есть лог запросов к серверу
+         * src/networkDebug/java/com/example/ExecutorBuildType
+         */
+        networkDebug {
+            initWith debug
+            applicationIdSuffix ".networkDebug"
         }
     }
 

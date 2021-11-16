@@ -11,7 +11,14 @@ class ViewHolderTrainingTestBody(
     private val binding: ItemTrainingTestBodyBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(string: String) {
+    fun bind(string: String, onItemClickListener: OnItemClickListener) {
         binding.buttonItemTrainingTestBody.text = string
+        binding.buttonItemTrainingTestBody.setOnClickListener {
+            onItemClickListener.onItemClick(string)
+        }
     }
+}
+
+interface OnItemClickListener {
+    fun onItemClick(item: String)
 }
