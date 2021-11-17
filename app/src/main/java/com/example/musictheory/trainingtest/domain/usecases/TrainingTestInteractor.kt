@@ -2,6 +2,9 @@ package com.example.musictheory.trainingtest.domain.usecases
 
 import com.example.musictheory.core.domain.repository.MainRepository
 import com.example.musictheory.core.domain.usecases.MainInteractor
+import com.example.musictheory.home.homeModel.Collection
+import com.example.musictheory.home.homeModel.Id
+import com.example.musictheory.home.homeModel.PostSection
 import com.example.musictheory.trainingtest.data.model.MusicTest
 import com.example.musictheory.trainingtest.data.model.PostMusicTest
 import com.example.musictheory.trainingtest.data.model.ServerResponseMusicTest
@@ -34,6 +37,22 @@ class TrainingTestInteractor(
                         listOf("none", "stave")
                     )
                 )
+            )
+        )
+            .execute()
+    }
+
+    suspend fun postCollection() = withContext(Dispatchers.IO) {
+        mainRepository.postSection(
+            PostSection(
+                listOf(
+                    Collection(
+                        Id("1"),
+                        "",
+                        "Тест на тональности"
+                    )
+                ),
+                "sections"
             )
         )
             .execute()

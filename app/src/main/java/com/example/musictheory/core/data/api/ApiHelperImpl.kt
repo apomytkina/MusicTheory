@@ -1,8 +1,9 @@
 package com.example.musictheory.core.data.api
 
-import com.example.musictheory.core.data.model.ServerData
 import com.example.musictheory.core.data.model.ServerResponse
 import com.example.musictheory.core.domain.api.ApiHelper
+import com.example.musictheory.home.homeModel.PostSection
+import com.example.musictheory.home.homeModel.SectionsCollection
 import com.example.musictheory.trainingtest.data.model.PostMusicTest
 import com.example.musictheory.trainingtest.data.model.ServerResponseMusicTest
 import retrofit2.Call
@@ -20,7 +21,7 @@ class ApiHelperImpl(private val apiService: MusicEducationApiService) : ApiHelpe
         return apiService.getMusicTest("tests")
     }
 
-    override suspend fun postSection(serverData: ServerData): Call<ServerData> {
+    override suspend fun postSection(serverData: PostSection): Call<SectionsCollection> {
         return apiService.postSection(serverData)
     }
 

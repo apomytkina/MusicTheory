@@ -1,4 +1,4 @@
-package com.example
+package com.example.musictheory
 
 import android.os.StrictMode
 import okhttp3.OkHttpClient

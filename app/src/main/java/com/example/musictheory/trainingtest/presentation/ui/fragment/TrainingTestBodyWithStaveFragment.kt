@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.musictheory.R
@@ -47,6 +48,18 @@ class TrainingTestBodyWithStaveFragment : Fragment(), OnItemClickListener {
     }
 
     override fun onItemClick(item: String) {
-        TODO("Not yet implemented")
+
+        parentFragmentManager.beginTransaction().apply {
+            replace(R.id.full, ResultFragment.newInstance(1))
+            commit()
+        }
+
+//        var nextBodyFragment: Fragment = TempFragment()
+//        childFragmentManager.commit {
+//            replace(
+//                R.id.bodyTrainingTest,
+//                nextBodyFragment
+//            )
+//        }
     }
 }

@@ -58,7 +58,8 @@ class TrainingTestViewModel @Inject constructor() :
     }
 
     suspend fun postTest() {
-        trainingTestInteractor.postTest()
+//        trainingTestInteractor.postCollection()
+//        trainingTestInteractor.postTest()
     }
 
     fun getData(serverResponse: ServerResponseMusicTest) {

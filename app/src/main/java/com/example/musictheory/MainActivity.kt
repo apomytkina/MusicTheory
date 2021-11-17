@@ -10,10 +10,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.musictheory.core.data.MainActivityCallback
 import com.example.musictheory.core.data.model.ServerResponse
-import com.example.musictheory.core.data.repositories.DataStoreMusicEducation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -28,8 +26,8 @@ class MainActivity : AppCompatActivity(), MainActivityCallback {
      *
      * @see com.example.musictheory.trainingtest.presentation.ui.viewmodel.TrainingTestViewModel
      */
-    @Inject
-    lateinit var dataStoreMusicEducation: DataStoreMusicEducation
+//    @Inject
+//    lateinit var dataStoreMusicEducation: DataStoreMusicEducation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,10 +38,10 @@ class MainActivity : AppCompatActivity(), MainActivityCallback {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home,
+                R.id.nested_navigation_home,
                 R.id.navigation_dashboard,
                 R.id.navigation_notifications,
-                R.id.action_navigation_home_to_nested_navigation_training_test
+                R.id.action_global_nested_navigation_training_test
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

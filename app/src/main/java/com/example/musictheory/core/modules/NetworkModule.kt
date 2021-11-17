@@ -8,6 +8,7 @@ import com.example.musictheory.core.data.repositories.DataStoreMusicEducation
 import com.example.musictheory.core.data.repositories.MainRepositoryImpl
 import com.example.musictheory.core.domain.api.ApiHelper
 import com.example.musictheory.core.domain.repository.MainRepository
+import com.example.musictheory.home.homeUtil.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
