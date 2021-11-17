@@ -24,9 +24,7 @@ class HomeViewModel @Inject constructor(
         repository.getCategories().let { response ->
             Timber.v("t1 ${response.body()}")
             val responseCollection = response.body()
-            if (response.isSuccessful && responseCollection != null &&
-                responseCollection.data != null
-            )
+            if (response.isSuccessful && responseCollection != null)
                 _categories.postValue(responseCollection.data.collection)
             else
                 Log.d(
