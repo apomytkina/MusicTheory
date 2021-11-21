@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.musictheory.R
@@ -34,7 +35,6 @@ class ResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        insertTestData()
         viewModel.result.observe(
             viewLifecycleOwner,
             { result ->
@@ -42,14 +42,21 @@ class ResultFragment : Fragment() {
             }
         )
 
+        viewModel.test.observe(
+            viewLifecycleOwner,
+            { test ->
+                Toast.makeText(context, test.id, Toast.LENGTH_LONG).show()
+            }
+        )
+
         arguments?.let {
-            val id = it.getInt(ARG_ID_RESULT)
+            val id = it.getLong(ARG_ID_RESULT)
             viewModel.getResultById(id)
         }
     }
     private fun insertTestData() {
-        viewModel.saveTest(Test(0, 0, listOf("are you "), listOf("yes"), TypeQuestion.SIMPLE))
-        viewModel.saveResult(Result(1, 0, 1, listOf(Mistake(1, listOf("ошибка", "ошибка")))))
+        viewModel.saveTest(Test("1", 0, listOf("are you "), listOf("yes"), TypeQuestion.SIMPLE))
+        viewModel.saveResult(Result(1, "1", 1, listOf(Mistake(1, listOf("ошибка", "ошибка")))))
     }
 
     override fun onDestroyView() {
@@ -81,10 +88,10 @@ class ResultFragment : Fragment() {
 
         private const val ARG_ID_RESULT = "id_result"
 
-        fun newInstance(idResult: Int): Fragment {
+        fun newInstance(idResult: Long): Fragment {
             return ResultFragment().apply {
                 arguments = Bundle().apply {
-                    putInt(ARG_ID_RESULT, idResult)
+                    putLong(ARG_ID_RESULT, idResult)
                 }
             }
         }

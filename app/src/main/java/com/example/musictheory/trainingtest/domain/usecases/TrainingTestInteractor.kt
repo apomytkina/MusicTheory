@@ -28,6 +28,7 @@ class TrainingTestInteractor(
                 "tests",
                 listOf(
                     MusicTest(
+                        Id("1"),
                         "1",
                         listOf("Какие знаки в ля мажоре", "Сколько знаков в ля мажоре"),
                         listOf(

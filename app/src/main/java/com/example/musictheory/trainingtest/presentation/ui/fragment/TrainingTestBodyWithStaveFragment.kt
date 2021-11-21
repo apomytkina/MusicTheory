@@ -5,16 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.musictheory.R
 import com.example.musictheory.databinding.FragmentTrainingTestBodyWithStaveBinding
+import com.example.musictheory.model.Mistake
+import com.example.musictheory.model.Result
+import com.example.musictheory.model.Test
+import com.example.musictheory.model.TypeQuestion
 import com.example.musictheory.trainingtest.presentation.ui.list.adapter.AdapterTrainingTestBody
 import com.example.musictheory.trainingtest.presentation.ui.list.viewholder.OnItemClickListener
 import com.example.musictheory.trainingtest.presentation.ui.viewmodel.TrainingTestViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * A simple [Fragment] subclass.
@@ -48,18 +54,26 @@ class TrainingTestBodyWithStaveFragment : Fragment(), OnItemClickListener {
     }
 
     override fun onItemClick(item: String) {
-
-        parentFragmentManager.beginTransaction().apply {
-            replace(R.id.full, ResultFragment.newInstance(1))
-            commit()
+        trainingTestViewModel.saveTest(
+            Test(
+                trainingTestViewModel.serverResponseCollection.value.id.oid,
+                idCategory = 0,
+                questions = listOf("are you "),
+                answers = listOf("yes"),
+                typeOfQuestion = TypeQuestion.SIMPLE
+            )
+        )
+        lifecycleScope.launch {
+            val id = withContext(Dispatchers.IO) {
+                trainingTestViewModel.saveResult(
+                    Result(
+                        idTest = trainingTestViewModel.serverResponseCollection.value.id.oid,
+                        mistakeCount = 1,
+                        mistakeArray = listOf(Mistake(1, listOf("ошибка", "ошибка")))
+                    )
+                )
+            }
+            trainingTestViewModel.goResult(id)
         }
-
-//        var nextBodyFragment: Fragment = TempFragment()
-//        childFragmentManager.commit {
-//            replace(
-//                R.id.bodyTrainingTest,
-//                nextBodyFragment
-//            )
-//        }
     }
 }

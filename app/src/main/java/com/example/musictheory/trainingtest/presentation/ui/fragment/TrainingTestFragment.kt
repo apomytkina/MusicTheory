@@ -73,6 +73,17 @@ class TrainingTestFragment : Fragment() {
                 }
         }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            trainingTestViewModel.goResultEvent
+                .collect {
+                    if (it != 0L) {
+                        parentFragmentManager.beginTransaction().apply {
+                            replace(R.id.full, ResultFragment.newInstance(it))
+                            commit()
+                        }
+                    }
+                }
+        }
         return binding.root
     }
 

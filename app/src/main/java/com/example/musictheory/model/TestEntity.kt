@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class Test(
     @PrimaryKey
     @ColumnInfo(name = "id")
-    val id: Int,
+    val id: String,
     @ColumnInfo(name = "id_category")
     val idCategory: Int,
     @ColumnInfo(name = "question_array ")
