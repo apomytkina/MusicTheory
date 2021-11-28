@@ -15,7 +15,7 @@ class CategoriesAdapter :
         fun onItemClick(position: Int)
     }
 
-    fun setOnItemClickListener(setListener: OnItemClickListener){
+    fun setOnItemClickListener(setListener: OnItemClickListener) {
         listener = setListener
     }
 

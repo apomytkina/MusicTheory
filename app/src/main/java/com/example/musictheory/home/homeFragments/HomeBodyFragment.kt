@@ -58,17 +58,19 @@ class HomeBodyFragment : Fragment() {
             adapter
             layoutManager = LinearLayoutManager(activity)
         }
-        adapter.setOnItemClickListener(object: CategoriesAdapter.OnItemClickListener{
-            override fun onItemClick(position: Int) {
-                val bundle = Bundle()
-                bundle.putInt("categoryNumber", position)
-                val trainingTestFragment = TrainingTestFragment()
-                trainingTestFragment.arguments = bundle
-                fragmentManager?.beginTransaction()?.replace(
-                    R.id.nav_host_fragment_container,
-                    trainingTestFragment
-                )?.commit()
+        adapter.setOnItemClickListener(
+            object : CategoriesAdapter.OnItemClickListener {
+                override fun onItemClick(position: Int) {
+                    val bundle = Bundle()
+                    bundle.putInt("categoryNumber", position)
+                    val trainingTestFragment = TrainingTestFragment()
+                    trainingTestFragment.arguments = bundle
+                    fragmentManager?.beginTransaction()?.replace(
+                        R.id.nav_host_fragment_container,
+                        trainingTestFragment
+                    )?.commit()
+                }
             }
-        })
+        )
     }
 }
