@@ -9,14 +9,24 @@ import com.example.musictheory.home.homeModel.Collection
 
 class CategoriesAdapter :
     ListAdapter<Collection, CategoriesViewHolder>(differCallback) {
+    private lateinit var listener: OnItemClickListener
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    fun setOnItemClickListener(setListener: OnItemClickListener){
+        listener = setListener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
         return CategoriesViewHolder(
             TestCategoryCardBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
-                false
-            )
+                false,
+            ),
+            listener
         )
     }
 

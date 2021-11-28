@@ -11,4 +11,6 @@ interface CategoriesApi {
         @Query("collection_name")
         collectionName: String = "sections"
     ): Response<SectionsCollection>
+
+    // POST request
 }
