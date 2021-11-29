@@ -7,16 +7,11 @@ import com.example.musictheory.databinding.TestCategoryCardBinding
 import com.example.musictheory.home.differCallback
 import com.example.musictheory.home.homeModel.Collection
 
-class CategoriesAdapter :
+class CategoriesAdapter(private var listener: OnItemClickListener) :
     ListAdapter<Collection, CategoriesViewHolder>(differCallback) {
-    private lateinit var listener: OnItemClickListener
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
-    }
-
-    fun setOnItemClickListener(setListener: OnItemClickListener) {
-        listener = setListener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {

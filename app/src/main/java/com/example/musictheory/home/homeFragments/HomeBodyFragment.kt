@@ -31,9 +31,22 @@ class HomeBodyFragment : Fragment() {
     ): View? {
         _binding = FragmentHomeBodyBinding.inflate(inflater, container, false)
         val view = binding.root
-        categoriesAdapter = CategoriesAdapter()
+        categoriesAdapter = CategoriesAdapter(
+            object : CategoriesAdapter.OnItemClickListener {
+                override fun onItemClick(position: Int) {
+                    val bundle = Bundle()
+                    bundle.putInt("categoryNumber", position)
+                    val trainingTestFragment = TrainingTestFragment()
+                    trainingTestFragment.arguments = bundle
+                    fragmentManager?.beginTransaction()?.replace(
+                        R.id.nav_host_fragment_container,
+                        trainingTestFragment
+                    )?.commit()
+                }
+            }
+        )
 
-        setUpRecyclerView()
+        setUpRecyclerView(categoriesAdapter)
 
         homeViewModel.categories.observe(
             viewLifecycleOwner,
@@ -52,25 +65,10 @@ class HomeBodyFragment : Fragment() {
         super.onDestroyView()
     }
 
-    private fun setUpRecyclerView() {
-        var adapter = CategoriesAdapter()
+    private fun setUpRecyclerView(adapter: CategoriesAdapter) {
         binding.testCategoryRecyclerView.apply {
             adapter
             layoutManager = LinearLayoutManager(activity)
         }
-        adapter.setOnItemClickListener(
-            object : CategoriesAdapter.OnItemClickListener {
-                override fun onItemClick(position: Int) {
-                    val bundle = Bundle()
-                    bundle.putInt("categoryNumber", position)
-                    val trainingTestFragment = TrainingTestFragment()
-                    trainingTestFragment.arguments = bundle
-                    fragmentManager?.beginTransaction()?.replace(
-                        R.id.nav_host_fragment_container,
-                        trainingTestFragment
-                    )?.commit()
-                }
-            }
-        )
     }
 }
