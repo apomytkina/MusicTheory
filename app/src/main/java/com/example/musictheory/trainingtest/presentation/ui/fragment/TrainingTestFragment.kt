@@ -15,11 +15,6 @@ import com.example.musictheory.core.data.model.ServerResponse
 import com.example.musictheory.databinding.TrainingTestFragmentBinding
 import com.example.musictheory.trainingtest.presentation.ui.viewmodel.TrainingTestViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class TrainingTestFragment : Fragment() {
@@ -45,6 +40,7 @@ class TrainingTestFragment : Fragment() {
             trainingTestViewModel.getData(tests.await())
 //            showDataFromServer(tests.await())
         }
+
 
         viewLifecycleOwner.lifecycleScope.launch {
             trainingTestViewModel.goNextEvent
