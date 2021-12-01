@@ -38,7 +38,4 @@ class PersonalAccountTitleFragment : Fragment() {
         _binding = null
         super.onDestroy()
     }
-
-    private fun closeFragment() {
-    }
 }
