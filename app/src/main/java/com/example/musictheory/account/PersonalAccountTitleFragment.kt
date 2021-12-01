@@ -1,22 +1,44 @@
 package com.example.musictheory.account
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.musictheory.R
+import android.widget.Button
+import androidx.fragment.app.Fragment
+import com.example.musictheory.databinding.FragmentPersonalAccountTitleBinding
 
 class PersonalAccountTitleFragment : Fragment() {
+    private var _binding: FragmentPersonalAccountTitleBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var backButton: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_personal_account_title, container, false)
+        _binding = FragmentPersonalAccountTitleBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        backButton = binding.backButton
+        backButton.setOnClickListener {
+            requireActivity().fragmentManager.popBackStack()
+        }
+
+        return view
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
+    }
+
+    private fun closeFragment() {
     }
 }
