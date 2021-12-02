@@ -8,13 +8,20 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.musictheory.R
 import com.example.musictheory.core.data.MainActivityCallback
 import com.example.musictheory.core.data.model.ServerResponse
 import com.example.musictheory.databinding.TrainingTestFragmentBinding
 import com.example.musictheory.trainingtest.presentation.ui.viewmodel.TrainingTestViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class TrainingTestFragment : Fragment() {
@@ -34,6 +41,46 @@ class TrainingTestFragment : Fragment() {
         initNestedFragments()
 
         // Вызов запроса к серверу через view model
+        viewLifecycleOwner.lifecycleScope.launch {
+
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                launch {
+                    trainingTestViewModel.goNextEvent.collect {
+                        if (it) {
+                            var nextBodyFragment: Fragment? = null
+                            when (trainingTestViewModel.displayedElements.value) {
+                                "none" -> {
+                                    nextBodyFragment =
+                                        TrainingTestBodyWithStaveFragment()
+                                }
+                                "stave" -> {
+                                    nextBodyFragment =
+                                        TrainingTestBodyWithStaveFragment()
+                                }
+                            }
+                            if (nextBodyFragment != null) {
+                                childFragmentManager.commit {
+                                    replace(
+                                        R.id.bodyTrainingTest,
+                                        nextBodyFragment
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+                launch {
+                    trainingTestViewModel.goResultEvent.collect {
+                        if (it != 0L) {
+                            parentFragmentManager.beginTransaction().apply {
+                                replace(R.id.full, ResultFragment.newInstance(it))
+                                commit()
+                            }
+                        }
+                    }
+                }
+            }
+        }
         lifecycleScope.launch {
             val tests = async { trainingTestViewModel.getTests() }
 //            val post = async { trainingTestViewModel.postTest() }
@@ -41,45 +88,6 @@ class TrainingTestFragment : Fragment() {
 //            showDataFromServer(tests.await())
         }
 
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            trainingTestViewModel.goNextEvent
-                .collect {
-                    if (it) {
-                        var nextBodyFragment: Fragment? = null
-                        when (trainingTestViewModel.displayedElements.value) {
-                            "none" -> {
-                                nextBodyFragment =
-                                    TrainingTestBodyWithStaveFragment()
-                            }
-                            "stave" -> {
-                                nextBodyFragment =
-                                    TrainingTestBodyWithStaveFragment()
-                            }
-                        }
-                        if (nextBodyFragment != null) {
-                            childFragmentManager.commit {
-                                replace(
-                                    R.id.bodyTrainingTest,
-                                    nextBodyFragment
-                                )
-                            }
-                        }
-                    }
-                }
-        }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            trainingTestViewModel.goResultEvent
-                .collect {
-                    if (it != 0L) {
-                        parentFragmentManager.beginTransaction().apply {
-                            replace(R.id.full, ResultFragment.newInstance(it))
-                            commit()
-                        }
-                    }
-                }
-        }
         return binding.root
     }
 
