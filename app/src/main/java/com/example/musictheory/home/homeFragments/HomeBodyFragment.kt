@@ -12,6 +12,7 @@ import com.example.musictheory.R
 import com.example.musictheory.databinding.FragmentHomeBodyBinding
 import com.example.musictheory.home.homeAdapter.CategoriesAdapter
 import com.example.musictheory.home.homeViewModel.HomeViewModel
+import com.example.musictheory.trainingtest.presentation.ui.fragment.TrainingTestFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,7 +37,20 @@ class HomeBodyFragment : Fragment() {
     ): View? {
         _binding = FragmentHomeBodyBinding.inflate(inflater, container, false)
         val view = binding.root
-        categoriesAdapter = CategoriesAdapter()
+        categoriesAdapter = CategoriesAdapter(
+            object : CategoriesAdapter.OnItemClickListener {
+                override fun onItemClick(position: Int) {
+                    val bundle = Bundle()
+                    bundle.putInt("categoryNumber", position)
+                    val trainingTestFragment = TrainingTestFragment()
+                    trainingTestFragment.arguments = bundle
+                    fragmentManager?.beginTransaction()?.replace(
+                        R.id.nav_host_fragment_container,
+                        trainingTestFragment
+                    )?.commit()
+                }
+            }
+        )
         setUpRecyclerView(categoriesAdapter)
 
         homeViewModel.categories.observe(
@@ -55,6 +69,7 @@ class HomeBodyFragment : Fragment() {
         _binding = null
         super.onDestroyView()
     }
+
 
     private fun setUpRecyclerView(categoriesAdapter: CategoriesAdapter) {
         binding.testCategoryRecyclerView.apply {
