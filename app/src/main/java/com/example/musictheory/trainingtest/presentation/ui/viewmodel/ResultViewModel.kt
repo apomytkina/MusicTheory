@@ -37,15 +37,17 @@ class ResultViewModel @Inject constructor(
         }
     }
 
-    fun getResultById(id: Int) {
+    fun getResultById(id: Long) {
         viewModelScope.launch {
             repository.local.getResultById(id).collect { results ->
-                _result.postValue(results[0])
+                if (results != null && results.isNotEmpty()) {
+                    _result.postValue(results[0])
+                }
             }
         }
     }
 
-    fun getTestById(id: Int) {
+    fun getTestById(id: String) {
         viewModelScope.launch {
             repository.local.getTestById(id).collect { tests ->
                 _test.postValue(tests[0])

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.musictheory.R
@@ -12,10 +13,15 @@ import com.example.musictheory.databinding.FragmentHomeBodyBinding
 import com.example.musictheory.home.homeAdapter.CategoriesAdapter
 import com.example.musictheory.home.homeViewModel.HomeViewModel
 import com.example.musictheory.trainingtest.presentation.ui.fragment.TrainingTestFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeBodyFragment : Fragment() {
     lateinit var categoriesAdapter: CategoriesAdapter
-    lateinit var homeViewModel: HomeViewModel
+//    lateinit var homeViewModel: HomeViewModel
+
+    private val homeViewModel
+    by hiltNavGraphViewModels<HomeViewModel>(R.id.nested_navigation_home)
 
     private var _binding: FragmentHomeBodyBinding? = null
     private val binding get() = _binding!!
@@ -45,7 +51,6 @@ class HomeBodyFragment : Fragment() {
                 }
             }
         )
-
         setUpRecyclerView(categoriesAdapter)
 
         homeViewModel.categories.observe(
@@ -65,9 +70,10 @@ class HomeBodyFragment : Fragment() {
         super.onDestroyView()
     }
 
-    private fun setUpRecyclerView(adapter: CategoriesAdapter) {
+
+    private fun setUpRecyclerView(categoriesAdapter: CategoriesAdapter) {
         binding.testCategoryRecyclerView.apply {
-            adapter
+            adapter = categoriesAdapter
             layoutManager = LinearLayoutManager(activity)
         }
     }

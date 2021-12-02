@@ -8,6 +8,7 @@
     <string name="hello_blank_fragment">header</string>
     <string name="hello_blank_fragment2">body</string>
     <string name="hello_blank_fragment3">footer</string>
+    <string name="dont_know">Не знаю</string>
     <string name="result_from">%1$d из %2$d</string>
     <string name="test_passed">Тест пройден</string>
     <string name="correct_test">Правильных тестов</string>
