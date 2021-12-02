@@ -70,7 +70,6 @@ class HomeBodyFragment : Fragment() {
         super.onDestroyView()
     }
 
-
     private fun setUpRecyclerView(categoriesAdapter: CategoriesAdapter) {
         binding.testCategoryRecyclerView.apply {
             adapter = categoriesAdapter
