@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.musictheory.R
 import com.example.musictheory.databinding.FragmentTempBinding
 
 class TempFragment : Fragment() {
@@ -26,10 +25,10 @@ class TempFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.nextButton.setOnClickListener {
 
-            parentFragmentManager.beginTransaction().apply {
-                replace(R.id.full, ResultFragment.newInstance(1))
-                commit()
-            }
+//            parentFragmentManager.beginTransaction().apply {
+//                replace(R.id.full, ResultFragment.newInstance(1))
+//                commit()
+//            }
         }
     }
 
