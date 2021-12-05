@@ -14,9 +14,9 @@
             app:layout_constraintGuide_percent="0.1" />
 
     <TextView
-            android:id="@+id/register_tv"
+            android:id="@+id/enter_tv"
             android:textSize="@dimen/text_size_personal_account"
-            android:text="Регистрация"
+            android:text="@string/registration_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/left_gl"
@@ -29,13 +29,13 @@
     <TextView
             android:id="@+id/login_tv"
             android:textSize="@dimen/text_size_personal_account"
-            android:text="Логин"
+            android:text="@string/login_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/text_height_personal_account"
             app:layout_constraintStart_toStartOf="@+id/left_gl"
             app:layout_constraintEnd_toStartOf="@+id/login_et"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintTop_toBottomOf="@+id/register_tv"
+            app:layout_constraintTop_toBottomOf="@+id/enter_tv"
             android:layout_marginTop="@dimen/margin_between_text_personal_account" />
 
     <EditText
@@ -43,13 +43,13 @@
             android:layout_width="@dimen/text_width_personal_account"
             android:layout_height="@dimen/text_height_personal_account"
             app:layout_constraintEnd_toStartOf="@+id/right_gl"
-            app:layout_constraintTop_toBottomOf="@+id/register_tv"
+            app:layout_constraintTop_toBottomOf="@+id/enter_tv"
             android:layout_marginTop="@dimen/margin_between_text_personal_account" />
 
     <TextView
             android:id="@+id/password_tv"
             android:textSize="@dimen/text_size_personal_account"
-            android:text="Пароль"
+            android:text="@string/password_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/text_height_personal_account"
             app:layout_constraintTop_toBottomOf="@+id/login_tv"
@@ -70,7 +70,7 @@
     <TextView
             android:id="@+id/mail_tv"
             android:textSize="@dimen/text_size_personal_account"
-            android:text="Почта"
+            android:text="@string/mail_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/text_height_personal_account"
             app:layout_constraintEnd_toStartOf="@+id/mail_et"
@@ -89,7 +89,7 @@
             app:layout_constraintEnd_toStartOf="@+id/right_gl" />
 
     <Button
-            android:text="Зарегистрироваться"
+            android:text="@string/student_registration_fragment_registration_button"
             android:id="@+id/register_button"
             android:layout_width="@dimen/register_button_width"
             android:layout_height="@dimen/register_button_height"

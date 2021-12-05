@@ -21,13 +21,13 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/personal_account_title_left_margin"
                 android:layout_alignParentLeft="true"
-                android:text="Личный кабинет"
+                android:text="@string/personal_account_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
         <Button
                 android:id="@+id/back_button"
-                android:text="Back"
+                android:text="@string/personal_account_back_button"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/personal_account_title_right_margin"
                 android:layout_alignParentRight="true"
