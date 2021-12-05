@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".account.student.login.StudentLoginFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_gl"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.08" />
+
+    <TextView
+            android:id="@+id/enter_tv"
+            android:textSize="@dimen/text_size_personal_account"
+            android:text="@string/enter_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/left_gl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.092" />
+
+    <TextView
+            android:id="@+id/login_tv"
+            android:textSize="@dimen/text_size_personal_account"
+            android:text="@string/login_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/text_height_personal_account"
+            app:layout_constraintStart_toStartOf="@+id/left_gl"
+            app:layout_constraintEnd_toStartOf="@+id/login_et"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/enter_tv"
+            android:layout_marginTop="@dimen/margin_between_text_personal_account" />
+
+    <EditText
+            android:id="@+id/login_et"
+            android:layout_width="@dimen/edit_text_width_login_fragment"
+            android:layout_height="@dimen/text_height_personal_account"
+            app:layout_constraintEnd_toStartOf="@+id/right_gl"
+            app:layout_constraintTop_toBottomOf="@+id/enter_tv"
+            android:layout_marginTop="@dimen/margin_between_text_personal_account" />
+
+    <TextView
+            android:id="@+id/password_tv"
+            android:textSize="@dimen/text_size_personal_account"
+            android:text="@string/password_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/text_height_personal_account"
+            app:layout_constraintTop_toBottomOf="@+id/login_tv"
+            android:layout_marginTop="@dimen/margin_between_text_personal_account"
+            app:layout_constraintStart_toStartOf="@+id/left_gl"
+            app:layout_constraintEnd_toStartOf="@+id/password_et"
+            app:layout_constraintHorizontal_bias="1.0" />
+
+    <EditText
+            android:id="@+id/password_et"
+            android:textSize="@dimen/text_size_personal_account"
+            android:layout_width="@dimen/edit_text_width_login_fragment"
+            android:layout_height="@dimen/text_height_personal_account"
+            app:layout_constraintEnd_toStartOf="@+id/right_gl"
+            app:layout_constraintTop_toBottomOf="@+id/login_et"
+            android:layout_marginTop="@dimen/margin_between_text_personal_account" />
+
+    <Button
+            android:id="@+id/enter_button"
+            android:text="@string/enter_button"
+            android:layout_width="@dimen/enter_button_account_title_width"
+            android:layout_height="@dimen/enter_button_account_title_height"
+            app:layout_constraintTop_toBottomOf="@+id/password_et"
+            app:layout_constraintStart_toStartOf="@+id/left_gl"
+            android:layout_marginTop="@dimen/margin_between_button_and_text_personal_account"
+            app:layout_constraintEnd_toStartOf="@+id/right_gl"
+            app:layout_constraintHorizontal_bias="1.0" />
+
+    <Button
+            android:text="@string/student_login_fragment_registration_button"
+            android:id="@+id/register_button"
+            android:layout_width="@dimen/register_button_login_fragment_width"
+            android:layout_height="@dimen/register_button_login_fragment_height"
+            app:layout_constraintTop_toBottomOf="@+id/enter_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.773"
+            app:layout_constraintVertical_bias="0.287" />
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_gl"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.9" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
