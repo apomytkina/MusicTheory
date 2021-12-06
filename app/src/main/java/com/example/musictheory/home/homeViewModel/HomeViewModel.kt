@@ -7,9 +7,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.musictheory.home.homeModel.Collection
 import com.example.musictheory.home.homeRepository.CategoriesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
-class HomeViewModel(
+@HiltViewModel
+class HomeViewModel @Inject constructor(
     private val repository: CategoriesRepository
 ) : ViewModel() {
 
@@ -18,11 +22,15 @@ class HomeViewModel(
 
     private fun getCategories() = viewModelScope.launch {
         repository.getCategories().let { response ->
+            Timber.v("t1 ${response.body()}")
             val responseCollection = response.body()
             if (response.isSuccessful && responseCollection != null)
                 _categories.postValue(responseCollection.data.collection)
             else
-                Log.d("tag", "getCategories Error: ${response.code()}")
+                Log.d(
+                    "tag",
+                    "getCategories Error: ${response.code()}"
+                )
         }
     }
 

@@ -18,11 +18,11 @@ import androidx.room.PrimaryKey
     ]
 )
 data class Result(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Int,
+    val id: Long = 1,
     @ColumnInfo(name = "id_test")
-    val idTest: Int,
+    val idTest: String,
     @ColumnInfo(name = "mistake_count")
     val mistakeCount: Int,
     @ColumnInfo(name = "mistake_array")

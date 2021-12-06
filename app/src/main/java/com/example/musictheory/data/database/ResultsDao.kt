@@ -2,6 +2,7 @@ package com.example.musictheory.data.database
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.musictheory.model.Result
 import com.example.musictheory.model.Test
@@ -9,16 +10,32 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ResultsDao {
+    /**
+     * Временно не решаем конфикты, а закрываем на них глаза
+     *
+     * @return возвращает id, который задается автоматически
+     *
+     * и отправляется на ResultFragment
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun saveResult(result: Result): Long
 
-    @Insert
-    fun saveResult(result: Result)
-
-    @Insert
+    /**
+     * Временно не решаем конфикты, а закрываем на них глаза
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveTest(test: Test)
 
     @Query("SELECT * FROM results WHERE id = :id")
-    fun getResult(id: Int): Flow<List<Result>>
+    fun getResult(id: Long): Flow<List<Result>>
 
+    /**
+     * @param id
+     *
+     * У mongodb автоматическая генерация через специальный класс,
+     *
+     * поэтому использует строку в качестве id
+     */
     @Query("SELECT * FROM tests WHERE id = :id")
-    fun getTest(id: Int): Flow<List<Test>>
+    fun getTest(id: String): Flow<List<Test>>
 }

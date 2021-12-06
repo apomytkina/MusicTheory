@@ -2,8 +2,6 @@ package com.example.musictheory.core.data.repositories
 
 import com.example.musictheory.core.data.model.ServerResponse
 import com.example.musictheory.core.domain.repository.MainRepository
-import com.example.musictheory.trainingtest.data.model.MusicTest
-import com.example.musictheory.trainingtest.data.model.PostMusicTest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -13,6 +11,8 @@ import kotlinx.coroutines.withContext
  * Вариант на всякий случай. Лучше обращаться через интеракторы,
  *
  * как это реализовано в [TrainingTestViewModel]
+ *
+ * Нигде не используется
  *
  * @see com.example.musictheory.trainingtest.presentation.ui.viewmodel.TrainingTestViewModel
 
@@ -42,20 +42,20 @@ class DataStoreMusicEducation(private val mainRepository: MainRepository) {
 //        }
 //    }
 
-    suspend fun postTest() = withContext(Dispatchers.IO) {
-        mainRepository.postTest(
-            PostMusicTest(
-                "tests",
-                listOf(
-                    MusicTest(
-                        "123",
-                        listOf("question1"),
-                        listOf("answer1"),
-                        listOf("displayed1")
-                    )
-                )
-            )
-        )
-            .execute()
-    }
+//    suspend fun postTest() = withContext(Dispatchers.IO) {
+//        mainRepository.postTest(
+//            PostMusicTest(
+//                "tests",
+//                listOf(
+//                    MusicTest(
+//                        "123",
+//                        listOf("question1"),
+//                        listOf("answer1"),
+//                        listOf("displayed1")
+//                    )
+//                )
+//            )
+//        )
+//            .execute()
+//    }
 }

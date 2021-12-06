@@ -12,11 +12,13 @@ class LocalDataSource @Inject constructor(
     private val resultsDao: ResultsDao
 ) {
 
-    suspend fun saveResult(result: Result) {
+    /**
+     * Возвращамем id для передачи на ResultFragment
+     */
+    suspend fun saveResult(result: Result) =
         withContext(Dispatchers.IO) {
             resultsDao.saveResult(result)
         }
-    }
 
     suspend fun saveTest(test: Test) {
         withContext(Dispatchers.IO) {
@@ -24,11 +26,11 @@ class LocalDataSource @Inject constructor(
         }
     }
 
-    fun getResultById(id: Int): Flow<List<Result>> {
+    fun getResultById(id: Long): Flow<List<Result>> {
         return resultsDao.getResult(id)
     }
 
-    fun getTestById(id: Int): Flow<List<Test>> {
+    fun getTestById(id: String): Flow<List<Test>> {
         return resultsDao.getTest(id)
     }
 }

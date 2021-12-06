@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class Collection(
     @SerializedName("_id")
     val id: Id,
-    @SerializedName("ing_src")
+    @SerializedName("img_src")
     val imgSrc: String,
     @SerializedName("name")
     val name: String

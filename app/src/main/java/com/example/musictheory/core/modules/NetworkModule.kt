@@ -1,6 +1,7 @@
 package com.example.musictheory.core.modules
 
 import com.example.musictheory.BuildConfig
+import com.example.musictheory.ExecutorBuildType
 import com.example.musictheory.core.data.api.ApiHelperImpl
 import com.example.musictheory.core.data.api.MusicEducationApiService
 import com.example.musictheory.core.data.repositories.DataStoreMusicEducation
@@ -14,7 +15,6 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Inject
 import javax.inject.Singleton
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -30,17 +30,18 @@ class NetworkModule @Inject constructor() {
     @Provides
     fun provideBaseURL() = BuildConfig.BASE_URL
 
+    /**
+     * OkHttpClient поставляется через [ExecutorBuildType]
+     *
+     * в debug версии без логирования
+     *
+     * в networkDebug с логированием
+     */
     @Provides
     @Singleton
-    fun provideOkHttpClient() = if (BuildConfig.DEBUG) {
-        val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-        OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
-            .build()
-    } else OkHttpClient
-        .Builder()
-        .build()
+    fun provideOkHttpClient(): OkHttpClient {
+        return ExecutorBuildType.provideOkHttpClient()
+    }
 
     /** @param url это BASE_URL
      *
@@ -62,9 +63,6 @@ class NetworkModule @Inject constructor() {
         MusicEducationApiService::class.java
     )
 
-    /**
-     * Так понимаю, три метода ниже лучше заменить @Provide на @Bind?
-     */
     @Provides
     @Singleton
     fun provideApiHelper(
