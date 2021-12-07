@@ -24,4 +24,6 @@
     <string name="student_login_fragment_registration_button">Регистрация</string>
     <string name="personal_account_title">Личный кабинет</string>
     <string name="personal_account_back_button">Back</string>
+    <string name="web_client_id"></string>
+    <string name="account">Account</string>
 </resources>

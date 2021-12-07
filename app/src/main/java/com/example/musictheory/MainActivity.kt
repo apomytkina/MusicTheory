@@ -5,12 +5,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.musictheory.core.data.MainActivityCallback
 import com.example.musictheory.core.data.model.ServerResponse
+import com.example.musictheory.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +23,9 @@ class MainActivity : AppCompatActivity(), MainActivityCallback {
 
     private var _navView: BottomNavigationView? = null
     private val navView get() = _navView!!
+
+    private var _navController: NavController? = null
+    private val navController get() = _navController!!
 
     /**
      * Вариант получения данных с сервера также можно использовать, как в TrainingTestViewModel
@@ -33,9 +38,13 @@ class MainActivity : AppCompatActivity(), MainActivityCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.getDefaultNightMode())
-        setContentView(R.layout.activity_main)
+
+        var binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
         _navView = findViewById(R.id.nav_view)
-        val navController = findNavController(R.id.nav_host_fragment)
+        _navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
@@ -43,17 +52,12 @@ class MainActivity : AppCompatActivity(), MainActivityCallback {
                 R.id.nested_navigation_home,
                 R.id.navigation_dashboard,
                 R.id.navigation_notifications,
-                R.id.action_global_nested_navigation_training_test
+                R.id.action_global_nested_navigation_training_test,
+                R.id.action_global_nested_personal_account
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-        // Также можно использовать способ, как в TrainingTestViewModel
-//        lifecycleScope.launch {
-//            val sections = async { dataStoreMusicEducation.getTests() }
-//            showDataFromServer(sections.await())
-//        }
     }
 
     private suspend fun showDataFromServer(
@@ -72,6 +76,18 @@ class MainActivity : AppCompatActivity(), MainActivityCallback {
 
     override fun showBottomNavigationView() {
         navView.visibility = View.VISIBLE
+    }
+
+    override fun goTestFragment(position: Int) {
+        val bundle = Bundle()
+        bundle.putInt("categoryNumber", position)
+        navController.navigate(R.id.action_global_nested_navigation_training_test)
+        //                    val trainingTestFragment = TrainingTestFragment()
+        //                    trainingTestFragment.arguments = bundle
+        //                    fragmentManager?.beginTransaction()?.replace(
+        //                        R.id.nav_host_fragment_container,
+        //                        trainingTestFragment
+        //                    )?.commit()
     }
 
     override fun onDestroy() {

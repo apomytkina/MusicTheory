@@ -83,5 +83,36 @@
         <action
             android:id="@+id/action_global_nested_navigation_training_test"
             app:destination="@id/nested_navigation_training_test" />
+        <action
+                android:id="@+id/action_global_nested_personal_account"
+                app:destination="@id/nested_personal_account" />
+    </navigation>
+    <navigation android:id="@+id/nested_personal_account"
+            app:startDestination="@id/studentPersonalAccountLoginFragment">
+        <fragment
+                android:id="@+id/studentLoginFragment"
+                android:name="com.example.musictheory.account.student.login.StudentLoginFragment"
+                android:label="fragment_student_login"
+                tools:layout="@layout/fragment_student_login" />
+        <fragment
+                android:id="@+id/studentRegistrationFragment"
+                android:name="com.example.musictheory.account.student.registration.StudentRegistrationFragment"
+                android:label="fragment_student_registration"
+                tools:layout="@layout/fragment_student_registration" />
+        <fragment
+                android:id="@+id/studentPersonalAccountRegistrationFragment"
+                android:name="com.example.musictheory.account.student.registration.StudentPersonalAccountRegistrationFragment"
+                android:label="fragment_student_personal_account_registration"
+                tools:layout="@layout/fragment_student_personal_account_registration" />
+        <fragment
+                android:id="@+id/studentPersonalAccountLoginFragment"
+                android:name="com.example.musictheory.account.student.login.StudentPersonalAccountLoginFragment"
+                android:label="fragment_student_personal_account_login"
+                tools:layout="@layout/fragment_student_personal_account_login" />
+        <fragment
+                android:id="@+id/personalAccountTitleFragment"
+                android:name="com.example.musictheory.account.PersonalAccountTitleFragment"
+                android:label="fragment_personal_account_title"
+                tools:layout="@layout/fragment_personal_account_title" />
     </navigation>
 </navigation>

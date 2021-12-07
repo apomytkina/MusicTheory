@@ -26,10 +26,10 @@ class PersonalAccountTitleFragment : Fragment() {
         _binding = FragmentPersonalAccountTitleBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        backButton = binding.backButton
-        backButton.setOnClickListener {
-            requireActivity().fragmentManager.popBackStack()
-        }
+//        backButton = binding.backButton
+//        backButton.setOnClickListener {
+//            requireActivity().fragmentManager.popBackStack()
+//        }
 
         return view
     }
