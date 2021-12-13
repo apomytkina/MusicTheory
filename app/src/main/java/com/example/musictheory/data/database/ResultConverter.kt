@@ -29,4 +29,16 @@ class ResultConverter {
         val listType = object : TypeToken<List<Mistake>>() {}.type
         return gson.fromJson(str, listType)
     }
+
+    @TypeConverter
+    fun ToStringFromList(list: List<List<String>>): String {
+        return gson.toJson(list)
+    }
+
+
+    @TypeConverter
+    fun fromStringToList(str: String): List<List<String>> {
+        val listType = object : TypeToken<List<List<String>>>() {}.type
+        return gson.fromJson(str, listType)
+    }
 }

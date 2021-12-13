@@ -33,16 +33,26 @@ class TrainingTestViewModel @Inject constructor(private val repository: Reposito
     private val _messageHello = MutableStateFlow("Фрагмент тренировочных тестов")
     val messageHello: StateFlow<String> = _messageHello.asStateFlow()
 
+    private val _currentQuestionOid = MutableStateFlow("")
+    val currentQuestionOid: StateFlow<String> = _currentQuestionOid.asStateFlow()
+
+    private val _serverResponseCollectionList = MutableStateFlow<List<MusicTest>>(
+        listOf(MusicTest(Id(""), "", listOf(), listOf(), listOf()))
+    )
+//    val serverResponseCollectionList:
+//            StateFlow<List<MusicTest>> = _serverResponseCollectionList.asStateFlow()
+
     private val _serverResponseCollection = MutableStateFlow<MusicTest>(
         MusicTest(Id(""), "", listOf(), listOf(), listOf())
     )
-    val serverResponseCollection: StateFlow<MusicTest> = _serverResponseCollection.asStateFlow()
+    val serverResponseCollection
+            : StateFlow<MusicTest> = _serverResponseCollection.asStateFlow()
 
     private val _questionString = MutableStateFlow("Вопрос")
     val questionString: StateFlow<String> = _questionString.asStateFlow()
 
     private val _answersList = MutableStateFlow<List<String>>(
-        mutableListOf("10", "20", "30", "40", "50", "60", "70")
+        mutableListOf()
     )
     val answersList: StateFlow<List<String>> = _answersList.asStateFlow()
 
@@ -61,9 +71,21 @@ class TrainingTestViewModel @Inject constructor(private val repository: Reposito
     private val _currentRightAnswer = MutableStateFlow("")
     val currentRightAnswer: StateFlow<String> = _currentRightAnswer.asStateFlow()
 
+    private val _currentMistakeList = MutableStateFlow<MutableList<List<String>>>(
+        mutableListOf()
+    )
+    val currentMistakeList
+            : StateFlow<MutableList<List<String>>> = _currentMistakeList.asStateFlow()
+
+
     /**
      * Получаем данные через интерактор
      */
+
+    fun setOid(oid: String) {
+        _currentQuestionOid.value = oid
+    }
+
     suspend fun getTests(): ServerResponseMusicTest {
         return trainingTestInteractor.getTests()
     }
@@ -75,6 +97,12 @@ class TrainingTestViewModel @Inject constructor(private val repository: Reposito
 
     fun getData(serverResponse: ServerResponseMusicTest) {
         _serverResponseCollection.value = serverResponse.data.collection[0]
+        _serverResponseCollectionList.value = serverResponse.data.collection
+        _serverResponseCollectionList.value.forEach {
+            if (it.sectionsId == currentQuestionOid.value) {
+                _serverResponseCollection.value = it
+            }
+        }
         _currentRightAnswer.value = _serverResponseCollection
             .value.answerArray[_currentQuestionNum.value][0]
 
@@ -83,6 +111,8 @@ class TrainingTestViewModel @Inject constructor(private val repository: Reposito
 
         _questionString.value = _serverResponseCollection
             .value.questionArray[_currentQuestionNum.value]
+
+        _currentMistakeList.value = mutableListOf()
 
 //        _answersList.value = serverResponse.data.collection[0].answerArray[0]
 //        _questionString.emit(serverResponse.data.collection[0].questionArray[0])
@@ -94,7 +124,10 @@ class TrainingTestViewModel @Inject constructor(private val repository: Reposito
             return
         } else {
             _answersList.value = _serverResponseCollection
-                .value.answerArray[_currentQuestionNum.value]
+                .value.answerArray[_currentQuestionNum.value].shuffled()
+
+            _currentRightAnswer.value = _serverResponseCollection
+                .value.answerArray[_currentQuestionNum.value][0]
 
             _questionString.value = _serverResponseCollection
                 .value.questionArray[_currentQuestionNum.value]
@@ -117,5 +150,12 @@ class TrainingTestViewModel @Inject constructor(private val repository: Reposito
         viewModelScope.launch {
             repository.local.saveTest(test)
         }
+    }
+
+    fun setMistake(answer: String) {
+        if (currentMistakeList.value.isEmpty()) {
+            _currentMistakeList.value.add(listOf(_serverResponseCollection.value.sectionsId))
+        }
+        _currentMistakeList.value.add(listOf(answer, _questionString.value))
     }
 }

@@ -52,6 +52,7 @@ class TrainingTestBodyFragment : Fragment(), OnItemClickListener {
         if (item == trainingTestViewModel.currentRightAnswer.value) {
             trainingTestViewModel.goNext()
         } else {
+            trainingTestViewModel.setMistake(item)
             Toast.makeText(context, "Неправильно", Toast.LENGTH_SHORT).show()
         }
     }

@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.musictheory.R
+import com.example.musictheory.core.data.MainActivityCallback
 import com.example.musictheory.databinding.FragmentTrainingTestBodyWithStaveBinding
 import com.example.musictheory.model.Mistake
 import com.example.musictheory.model.Result
@@ -54,6 +56,7 @@ class TrainingTestBodyWithStaveFragment : Fragment(), OnItemClickListener {
     }
 
     override fun onItemClick(item: String) {
+        if (item == trainingTestViewModel.currentRightAnswer.value) {
         trainingTestViewModel.saveTest(
             Test(
                 trainingTestViewModel.serverResponseCollection.value.id.oid,
@@ -68,12 +71,22 @@ class TrainingTestBodyWithStaveFragment : Fragment(), OnItemClickListener {
                 trainingTestViewModel.saveResult(
                     Result(
                         idTest = trainingTestViewModel.serverResponseCollection.value.id.oid,
-                        mistakeCount = 1,
-                        mistakeArray = listOf(Mistake(1, listOf("ошибка", "ошибка")))
+                        mistakeCount = trainingTestViewModel.currentMistakeList.value.size-1,
+//                        mistakeArray = listOf(Mistake(1, listOf("ошибка", "ошибка")))
+                                mistakeArray = trainingTestViewModel.currentMistakeList.value
                     )
                 )
             }
             trainingTestViewModel.goResult(id)
+
+            if (activity is MainActivityCallback) {
+                (activity as MainActivityCallback).goResultFragment(id)
+            }
+        }
+        } else {
+            trainingTestViewModel.setMistake(item)
+            Toast.makeText(context, "Неправильно", Toast.LENGTH_SHORT).show()
         }
     }
+
 }

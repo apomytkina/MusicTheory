@@ -1,4 +1,4 @@
-package com.example.musictheory.account.student.login
+package com.example.musictheory.account.LoginScreen.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,8 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import com.example.musictheory.R
-import com.example.musictheory.account.student.viewmodel.PersonalAccountViewModel
+import com.example.musictheory.account.LoginScreen.PersonalAccountFragments
+import com.example.musictheory.account.LoginScreen.viewmodel.PersonalAccountViewModel
 import com.example.musictheory.databinding.FragmentStudentLoginBinding
 
 class StudentLoginFragment : Fragment() {
@@ -46,7 +47,7 @@ class StudentLoginFragment : Fragment() {
         }
 
         registerButton.setOnClickListener {
-            personalAccountViewModel.setRegister(true)
+            personalAccountViewModel.setRegister(PersonalAccountFragments.REGISTRATION)
         }
 
         return view

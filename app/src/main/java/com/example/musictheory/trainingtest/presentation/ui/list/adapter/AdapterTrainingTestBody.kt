@@ -5,8 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musictheory.databinding.ItemTrainingTestBodyBinding
 import com.example.musictheory.trainingtest.presentation.ui.list.viewholder.OnItemClickListener
-import com.example.musictheory.trainingtest.presentation.ui
-    .list.viewholder.ViewHolderTrainingTestBody
+import com.example.musictheory.trainingtest.presentation.ui.list.viewholder.ViewHolderTrainingTestBody
 
 /**
  * @author Владислав Хвесюк 31.10.2021

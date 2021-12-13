@@ -7,5 +7,7 @@ package com.example.musictheory.core.data
 interface MainActivityCallback {
     fun hideBottomNavigationView()
     fun showBottomNavigationView()
-    fun goTestFragment(position: Int)
+    fun goTestFragment(position: String)
+    fun goResultFragment(id: Long)
+    fun checkDarkMode()
 }

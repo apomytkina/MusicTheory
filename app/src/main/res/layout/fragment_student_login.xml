@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".account.student.login.StudentLoginFragment">
+        tools:context=".account.LoginScreen.login.StudentLoginFragment">
 
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/left_gl"
@@ -81,8 +81,8 @@
     <Button
             android:text="@string/student_login_fragment_registration_button"
             android:id="@+id/register_button"
-            android:layout_width="@dimen/register_button_login_fragment_width"
-            android:layout_height="@dimen/register_button_login_fragment_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/enter_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

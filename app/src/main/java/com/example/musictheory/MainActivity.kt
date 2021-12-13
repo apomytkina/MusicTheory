@@ -1,5 +1,7 @@
 package com.example.musictheory
 
+import android.app.Activity
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -12,6 +14,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.musictheory.core.data.MainActivityCallback
 import com.example.musictheory.core.data.model.ServerResponse
+import com.example.musictheory.core.presenter.ThemeManager
+import com.example.musictheory.core.presenter.ThemeManager.DARK_MODE
+import com.example.musictheory.core.presenter.ThemeManager.LIGHT_MODE
 import com.example.musictheory.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,6 +25,9 @@ import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainActivityCallback {
+
+    private val nightMode = "NIGHT_MODE"
+    private val ARG_ID_RESULT = "id_result"
 
     private var _navView: BottomNavigationView? = null
     private val navView get() = _navView!!
@@ -38,6 +46,17 @@ class MainActivity : AppCompatActivity(), MainActivityCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.getDefaultNightMode())
+        val sharedName = "SharedPref"
+        val settings = getSharedPreferences(sharedName, 0)
+        val editor = settings.edit()
+        when(settings.getString(nightMode, "none")){
+            "none" -> {
+                editor.putString(nightMode, "light")
+                editor.apply()
+            }
+            "light" -> toggleTheme(true)
+            "dark" -> toggleTheme(false)
+        }
 
         var binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
@@ -78,16 +97,29 @@ class MainActivity : AppCompatActivity(), MainActivityCallback {
         navView.visibility = View.VISIBLE
     }
 
-    override fun goTestFragment(position: Int) {
+    override fun goTestFragment(oid: String) {
         val bundle = Bundle()
-        bundle.putInt("categoryNumber", position)
-        navController.navigate(R.id.action_global_nested_navigation_training_test)
-        //                    val trainingTestFragment = TrainingTestFragment()
-        //                    trainingTestFragment.arguments = bundle
-        //                    fragmentManager?.beginTransaction()?.replace(
-        //                        R.id.nav_host_fragment_container,
-        //                        trainingTestFragment
-        //                    )?.commit()
+        bundle.putString("categoryNumber", oid)
+        navController.navigate(R.id.action_global_nested_navigation_training_test, bundle)
+    }
+
+
+    override fun goResultFragment(id: Long) {
+        val bundle = Bundle()
+        bundle.putLong(ARG_ID_RESULT, id)
+        navController.navigate(R.id.action_navigation_nested_navigation_training_test_to_resultFragment, bundle)
+    }
+
+    private fun toggleTheme(isDark: Boolean): Boolean {
+        val mode = when (isDark) {
+            true -> LIGHT_MODE
+            false -> DARK_MODE
+        }
+        ThemeManager.applyTheme(mode)
+        return true
+    }
+
+    override fun checkDarkMode() {
     }
 
     override fun onDestroy() {

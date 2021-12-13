@@ -1,4 +1,4 @@
-package com.example.musictheory.account.student.login
+package com.example.musictheory.account.LoginScreen.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.musictheory.R
-import com.example.musictheory.account.student.registration.StudentRegistrationFragment
-import com.example.musictheory.account.student.viewmodel.PersonalAccountViewModel
+import com.example.musictheory.account.LoginScreen.PersonalAccountFragments
+import com.example.musictheory.account.LoginScreen.registration.StudentRegistrationFragment
+import com.example.musictheory.account.LoginScreen.viewmodel.PersonalAccountViewModel
 import com.example.musictheory.databinding.FragmentStudentPersonalAccountLoginBinding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -32,11 +33,20 @@ class StudentPersonalAccountLoginFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
 
                 personalAccountViewModel.goRegister.collect {
-                    if (it) {
-                        val studentRegistrationFragment = StudentRegistrationFragment()
-                        childFragmentManager.beginTransaction().apply {
-                            replace(R.id.login_body, studentRegistrationFragment)
-                            commit()
+                    when(it) {
+                        PersonalAccountFragments.REGISTRATION -> {
+                            val studentRegistrationFragment = StudentRegistrationFragment()
+                            childFragmentManager.beginTransaction().apply {
+                                replace(R.id.login_body, studentRegistrationFragment)
+                                commit()
+                            }
+                        }
+                        PersonalAccountFragments.LOGIN -> {
+                            val studentRegistrationFragment = StudentLoginFragment()
+                            childFragmentManager.beginTransaction().apply {
+                                replace(R.id.login_body, studentRegistrationFragment)
+                                commit()
+                            }
                         }
                     }
                 }

@@ -40,8 +40,9 @@ class HomeBodyFragment : Fragment() {
         categoriesAdapter = CategoriesAdapter(
             object : CategoriesAdapter.OnItemClickListener {
                 override fun onItemClick(position: Int) {
+                    val oid = categoriesAdapter.currentList.get(position).id.oid
                     if (activity is MainActivityCallback) {
-                        (activity as MainActivityCallback).goTestFragment(position)
+                        (activity as MainActivityCallback).goTestFragment(oid)
                     }
 //                    val bundle = Bundle()
 //                    bundle.putInt("categoryNumber", position)

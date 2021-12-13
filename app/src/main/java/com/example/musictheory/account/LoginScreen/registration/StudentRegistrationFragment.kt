@@ -1,4 +1,4 @@
-package com.example.musictheory.account.student.registration
+package com.example.musictheory.account.LoginScreen.registration
 
 import android.app.Activity
 import android.content.Intent
@@ -12,7 +12,10 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import com.example.musictheory.R
+import com.example.musictheory.account.LoginScreen.PersonalAccountFragments
+import com.example.musictheory.account.LoginScreen.viewmodel.PersonalAccountViewModel
 import com.example.musictheory.databinding.FragmentStudentRegistrationBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -22,6 +25,11 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 
 class StudentRegistrationFragment : Fragment() {
+
+    private val personalAccountViewModel: PersonalAccountViewModel
+            by hiltNavGraphViewModels<PersonalAccountViewModel>(R.id.nested_personal_account)
+
+
     private var _binding: FragmentStudentRegistrationBinding? = null
     private val binding get() = _binding!!
 
@@ -44,9 +52,6 @@ class StudentRegistrationFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -82,20 +87,21 @@ class StudentRegistrationFragment : Fragment() {
         return view
     }
 
-    fun updateUI(account: GoogleSignInAccount?) {
-        if (account != null) {
-            Toast.makeText(
-                context,
-                "Не авторизован",
-                Toast.LENGTH_SHORT
-            ).show()
-        } else {
-            Toast.makeText(
-                context,
-                "Авторизован",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+    private fun updateUI(account: GoogleSignInAccount?) {
+        personalAccountViewModel.setRegister(PersonalAccountFragments.REGISTRATION)
+//        if (account != null) {
+//            Toast.makeText(
+//                context,
+//                "Не авторизован",
+//                Toast.LENGTH_SHORT
+//            ).show()
+//        } else {
+//            Toast.makeText(
+//                context,
+//                "Авторизован",
+//                Toast.LENGTH_SHORT
+//            ).show()
+//        }
     }
 
     private fun signIn() {
@@ -112,7 +118,7 @@ class StudentRegistrationFragment : Fragment() {
             updateUI(account)
             Toast.makeText(
                 context,
-                "Начало токена: ${idToken ?: "null token"}",
+                "Токен: ${idToken ?: "null token"}",
                 Toast.LENGTH_SHORT
             ).show()
             Toast.makeText(

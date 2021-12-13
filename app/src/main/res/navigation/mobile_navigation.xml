@@ -52,7 +52,12 @@
             android:id="@+id/resultFragment"
             android:name="com.example.musictheory.trainingtest.presentation.ui.fragment.ResultFragment"
             android:label="fragment_result"
-            tools:layout="@layout/fragment_result" />
+            tools:layout="@layout/fragment_result" >
+            <argument
+                    android:name="id"
+                    app:argType="long"
+                    android:defaultValue="0L" />
+        </fragment>
         <fragment
             android:id="@+id/trainingTestBodyWithStaveFragment"
             android:name="com.example.musictheory.trainingtest.presentation.ui.fragment.TrainingTestBodyWithStaveFragment"
@@ -88,31 +93,41 @@
                 app:destination="@id/nested_personal_account" />
     </navigation>
     <navigation android:id="@+id/nested_personal_account"
-            app:startDestination="@id/studentPersonalAccountLoginFragment">
+            app:startDestination="@id/accountFragment">
         <fragment
                 android:id="@+id/studentLoginFragment"
-                android:name="com.example.musictheory.account.student.login.StudentLoginFragment"
+                android:name="com.example.musictheory.account.LoginScreen.login.StudentLoginFragment"
                 android:label="fragment_student_login"
                 tools:layout="@layout/fragment_student_login" />
         <fragment
                 android:id="@+id/studentRegistrationFragment"
-                android:name="com.example.musictheory.account.student.registration.StudentRegistrationFragment"
+                android:name="com.example.musictheory.account.LoginScreen.registration.StudentRegistrationFragment"
                 android:label="fragment_student_registration"
                 tools:layout="@layout/fragment_student_registration" />
         <fragment
                 android:id="@+id/studentPersonalAccountRegistrationFragment"
-                android:name="com.example.musictheory.account.student.registration.StudentPersonalAccountRegistrationFragment"
+                android:name="com.example.musictheory.account.LoginScreen.registration.StudentPersonalAccountRegistrationFragment"
                 android:label="fragment_student_personal_account_registration"
                 tools:layout="@layout/fragment_student_personal_account_registration" />
         <fragment
                 android:id="@+id/studentPersonalAccountLoginFragment"
-                android:name="com.example.musictheory.account.student.login.StudentPersonalAccountLoginFragment"
+                android:name="com.example.musictheory.account.LoginScreen.login.StudentPersonalAccountLoginFragment"
                 android:label="fragment_student_personal_account_login"
-                tools:layout="@layout/fragment_student_personal_account_login" />
+                tools:layout="@layout/fragment_student_personal_account_login" >
+            <argument
+                    android:name="OID"
+                    app:argType="string"
+                    android:defaultValue='""' />
+        </fragment>
         <fragment
                 android:id="@+id/personalAccountTitleFragment"
-                android:name="com.example.musictheory.account.PersonalAccountTitleFragment"
+                android:name="com.example.musictheory.account.LoginScreen.PersonalAccountTitleFragment"
                 android:label="fragment_personal_account_title"
                 tools:layout="@layout/fragment_personal_account_title" />
+        <fragment
+                android:id="@+id/accountFragment"
+                android:name="com.example.musictheory.account.account.AccountFragment"
+                android:label="account_fragment"
+                tools:layout="@layout/account_fragment" />
     </navigation>
 </navigation>

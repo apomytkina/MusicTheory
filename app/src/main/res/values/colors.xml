@@ -12,7 +12,11 @@
     <color name="purple_900">#1B1464</color>
     <color name="white_200">#E9E8F1</color>
     <color name="orange_500">#FF8F5E</color>
+    <color name="orange_600">#FE6F30</color>
     <color name="btnColorPressed">#C4C4C4</color>
 
+<!--    Темная тема-->
+    <color name="gray_700">#707070</color>
+    <color name="gray_400">#CFCFCF</color>
 
 </resources>

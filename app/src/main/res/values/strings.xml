@@ -21,9 +21,15 @@
     <string name="student_registration_fragment_registration_button">Зарегистрироваться</string>
     <string name="enter_title">Вход</string>
     <string name="enter_button">Вход</string>
+    <string name="exit">Выйти</string>
     <string name="student_login_fragment_registration_button">Регистрация</string>
     <string name="personal_account_title">Личный кабинет</string>
     <string name="personal_account_back_button">Back</string>
-    <string name="web_client_id"></string>
+    <string name="web_client_id">7061348269-mkqqh70081m84sj87040j6dupbmdsa62.apps.googleusercontent.com</string>
     <string name="account">Account</string>
+    <string name="TestName">Название теста</string>
+    <string name="question">Вопрос</string>
+    <string name="correct_answer">Правильный ответ</string>
+    <string name="incorrect_list">Список неправильных ответов</string>
+    <string name="add_test">Добавить</string>
 </resources>

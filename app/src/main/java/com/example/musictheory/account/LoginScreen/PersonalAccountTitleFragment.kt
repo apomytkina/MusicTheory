@@ -1,4 +1,4 @@
-package com.example.musictheory.account
+package com.example.musictheory.account.LoginScreen
 
 import android.os.Bundle
 import android.view.LayoutInflater
