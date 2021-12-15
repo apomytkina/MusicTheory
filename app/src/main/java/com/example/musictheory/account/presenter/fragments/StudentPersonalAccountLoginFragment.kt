@@ -1,4 +1,4 @@
-package com.example.musictheory.account.LoginScreen.login
+package com.example.musictheory.account.presenter.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,13 +10,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.musictheory.R
-import com.example.musictheory.account.LoginScreen.PersonalAccountFragments
-import com.example.musictheory.account.LoginScreen.registration.StudentRegistrationFragment
-import com.example.musictheory.account.LoginScreen.viewmodel.PersonalAccountViewModel
+import com.example.musictheory.account.loginScreen.PersonalAccountFragments
+import com.example.musictheory.account.presenter.viewmodels.PersonalAccountViewModel
 import com.example.musictheory.databinding.FragmentStudentPersonalAccountLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class StudentPersonalAccountLoginFragment : Fragment() {
     private val personalAccountViewModel: PersonalAccountViewModel
     by hiltNavGraphViewModels<PersonalAccountViewModel>(R.id.nested_personal_account)
@@ -33,7 +34,7 @@ class StudentPersonalAccountLoginFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
 
                 personalAccountViewModel.goRegister.collect {
-                    when(it) {
+                    when (it) {
                         PersonalAccountFragments.REGISTRATION -> {
                             val studentRegistrationFragment = StudentRegistrationFragment()
                             childFragmentManager.beginTransaction().apply {

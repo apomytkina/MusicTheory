@@ -60,6 +60,7 @@ class TrainingTestFragment : Fragment() {
                             }
                             if (nextBodyFragment != null) {
                                 childFragmentManager.commit {
+                                    disallowAddToBackStack()
                                     replace(
                                         R.id.bodyTrainingTest,
                                         nextBodyFragment
@@ -72,17 +73,15 @@ class TrainingTestFragment : Fragment() {
                 launch {
                     trainingTestViewModel.goResultEvent.collect {
                         if (it != 0L) {
-//                            parentFragmentManager.beginTransaction().apply {
-//                                replace(R.id.full,
-//                                    ResultFragment.newInstance(it))
-//                                commit()
-//                            }
+                            if (activity is MainActivityCallback) {
+                                (activity as MainActivityCallback).goResultFragment(it)
+                            }
                         }
                     }
                 }
                 launch {
-                    trainingTestViewModel.currentQuestionOid.collect{
-                        if(it.isNotEmpty()){
+                    trainingTestViewModel.currentQuestionOid.collect {
+                        if (it.isNotEmpty()) {
                             lifecycleScope.launch {
                                 val tests = async { trainingTestViewModel.getTests() }
                                 trainingTestViewModel.getData(tests.await())
@@ -131,7 +130,6 @@ class TrainingTestFragment : Fragment() {
             Toast.LENGTH_SHORT
         ).show()
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

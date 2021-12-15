@@ -40,8 +40,9 @@
                 android:label="training_test_fragment"
                 tools:layout="@layout/training_test_fragment" >
             <action
-                android:id="@+id/action_navigation_nested_navigation_training_test_to_resultFragment"
-                app:destination="@id/resultFragment" />
+                    android:id="@+id/action_navigation_nested_navigation_training_test_to_resultFragment"
+                    app:destination="@id/resultFragment"
+                    app:popUpTo="@id/nested_navigation_training_test" />
         </fragment>
         <fragment
             android:id="@+id/tempFragment"
@@ -86,48 +87,62 @@
             android:label="@string/title_home"
             tools:layout="@layout/fragment_home"/>
         <action
-            android:id="@+id/action_global_nested_navigation_training_test"
-            app:destination="@id/nested_navigation_training_test" />
+                android:id="@+id/action_global_nested_navigation_training_test"
+                app:destination="@id/nested_navigation_training_test" />
         <action
                 android:id="@+id/action_global_nested_personal_account"
                 app:destination="@id/nested_personal_account" />
     </navigation>
     <navigation android:id="@+id/nested_personal_account"
-            app:startDestination="@id/accountFragment">
+            app:startDestination="@id/studentPersonalAccountLoginFragment">
         <fragment
                 android:id="@+id/studentLoginFragment"
-                android:name="com.example.musictheory.account.LoginScreen.login.StudentLoginFragment"
+                android:name="com.example.musictheory.account.presenter.fragments.StudentLoginFragment"
                 android:label="fragment_student_login"
                 tools:layout="@layout/fragment_student_login" />
         <fragment
                 android:id="@+id/studentRegistrationFragment"
-                android:name="com.example.musictheory.account.LoginScreen.registration.StudentRegistrationFragment"
+                android:name="com.example.musictheory.account.presenter.fragments.StudentRegistrationFragment"
                 android:label="fragment_student_registration"
                 tools:layout="@layout/fragment_student_registration" />
         <fragment
-                android:id="@+id/studentPersonalAccountRegistrationFragment"
-                android:name="com.example.musictheory.account.LoginScreen.registration.StudentPersonalAccountRegistrationFragment"
-                android:label="fragment_student_personal_account_registration"
-                tools:layout="@layout/fragment_student_personal_account_registration" />
-        <fragment
                 android:id="@+id/studentPersonalAccountLoginFragment"
-                android:name="com.example.musictheory.account.LoginScreen.login.StudentPersonalAccountLoginFragment"
+                android:name="com.example.musictheory.account.presenter.fragments.StudentPersonalAccountLoginFragment"
                 android:label="fragment_student_personal_account_login"
                 tools:layout="@layout/fragment_student_personal_account_login" >
             <argument
                     android:name="OID"
                     app:argType="string"
                     android:defaultValue='""' />
+            <action
+                    android:id="@+id/action_studentPersonalAccountLoginFragment_to_accountFragment"
+                    app:destination="@id/accountFragment" />
         </fragment>
         <fragment
                 android:id="@+id/personalAccountTitleFragment"
-                android:name="com.example.musictheory.account.LoginScreen.PersonalAccountTitleFragment"
+                android:name="com.example.musictheory.account.loginScreen.PersonalAccountTitleFragment"
                 android:label="fragment_personal_account_title"
                 tools:layout="@layout/fragment_personal_account_title" />
         <fragment
                 android:id="@+id/accountFragment"
-                android:name="com.example.musictheory.account.account.AccountFragment"
+                android:name="com.example.musictheory.account.presenter.fragments.AccountFragment"
                 android:label="account_fragment"
-                tools:layout="@layout/account_fragment" />
+                tools:layout="@layout/account_fragment" >
+            <action
+                    android:id="@+id/action_accountFragment_to_addTestFragment"
+                    app:destination="@id/addTestFragment" />
+            <argument
+                    android:name="name"
+                    app:argType="string" />
+            <argument
+                    android:name="role"
+                    app:argType="string" />
+
+        </fragment>
+        <fragment
+                android:id="@+id/addTestFragment"
+                android:name="com.example.musictheory.account.presenter.fragments.AddTestFragment"
+                android:label="add_test_fragment"
+                tools:layout="@layout/add_test_fragment" />
     </navigation>
 </navigation>

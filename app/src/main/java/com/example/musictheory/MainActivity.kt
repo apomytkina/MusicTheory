@@ -1,12 +1,11 @@
 package com.example.musictheory
 
-import android.app.Activity
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -22,12 +21,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainActivityCallback {
 
     private val nightMode = "NIGHT_MODE"
-    private val ARG_ID_RESULT = "id_result"
+    private val argIdResult = "id_result"
 
     private var _navView: BottomNavigationView? = null
     private val navView get() = _navView!!
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), MainActivityCallback {
         val sharedName = "SharedPref"
         val settings = getSharedPreferences(sharedName, 0)
         val editor = settings.edit()
-        when(settings.getString(nightMode, "none")){
+        when (settings.getString(nightMode, "none")) {
             "none" -> {
                 editor.putString(nightMode, "light")
                 editor.apply()
@@ -103,11 +103,17 @@ class MainActivity : AppCompatActivity(), MainActivityCallback {
         navController.navigate(R.id.action_global_nested_navigation_training_test, bundle)
     }
 
-
     override fun goResultFragment(id: Long) {
         val bundle = Bundle()
-        bundle.putLong(ARG_ID_RESULT, id)
-        navController.navigate(R.id.action_navigation_nested_navigation_training_test_to_resultFragment, bundle)
+        bundle.putLong(argIdResult, id)
+        navController.navigate(
+            R.id.action_navigation_nested_navigation_training_test_to_resultFragment,
+            bundle
+        )
+    }
+
+    override fun goAddTestFragment() {
+        navController.navigate(R.id.action_accountFragment_to_addTestFragment)
     }
 
     private fun toggleTheme(isDark: Boolean): Boolean {
@@ -119,7 +125,17 @@ class MainActivity : AppCompatActivity(), MainActivityCallback {
         return true
     }
 
-    override fun checkDarkMode() {
+    override fun goAccount(email: String, role: String) {
+//        val bundle = Bundle()
+        val bundle = bundleOf(email to "name", role to "role")
+//        bundle.putString("name", email)
+//        bundle.putString("role", role)
+        Timber.v("t1 email " + email)
+//        navController.navigate(R.id.action_studentPersonalAccountLoginFragment_to_accountFragment, bundle)
+        navController.navigate(
+            R.id.action_studentPersonalAccountLoginFragment_to_accountFragment,
+            bundle
+        )
     }
 
     override fun onDestroy() {

@@ -4,14 +4,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".account.LoginScreen.registration.StudentRegistrationFragment">
+        android:background="?attr/windowBackground"
+        tools:context=".account.presenter.fragments.StudentRegistrationFragment">
 
-    <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/left_gl"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintGuide_percent="0.1" />
 
     <TextView
             android:id="@+id/enter_tv"
@@ -19,81 +14,69 @@
             android:text="@string/registration_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/left_gl"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintVertical_bias="0.092" />
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-            android:id="@+id/login_tv"
-            android:textSize="@dimen/text_size_personal_account"
-            android:text="@string/login_edit_text"
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textlayout_login"
+            app:layout_constraintTop_toBottomOf="@+id/sign_in_button"
+            android:layout_marginTop="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_marginEnd="@dimen/buttons_start_and_end_margin"
+            android:layout_marginStart="@dimen/buttons_start_and_end_margin"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_et"
+                android:hint="@string/login_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textlayout_password"
+            app:layout_constraintTop_toBottomOf="@+id/textlayout_login"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/buttons_start_and_end_margin"
+            android:layout_marginStart="@dimen/buttons_start_and_end_margin"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_et"
+                android:inputType="textPassword"
+                android:hint="@string/password_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <CheckBox
+            android:id="@+id/checkbox_teacher"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height_personal_account"
-            app:layout_constraintStart_toStartOf="@+id/left_gl"
-            app:layout_constraintEnd_toStartOf="@+id/login_et"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintTop_toBottomOf="@+id/enter_tv"
-            android:layout_marginTop="@dimen/margin_between_text_personal_account" />
-
-    <EditText
-            android:id="@+id/login_et"
-            android:layout_width="@dimen/text_width_personal_account"
-            android:layout_height="@dimen/text_height_personal_account"
-            app:layout_constraintEnd_toStartOf="@+id/right_gl"
-            app:layout_constraintTop_toBottomOf="@+id/enter_tv"
-            android:layout_marginTop="@dimen/margin_between_text_personal_account" />
-
-    <TextView
-            android:id="@+id/password_tv"
-            android:textSize="@dimen/text_size_personal_account"
-            android:text="@string/password_edit_text"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height_personal_account"
-            app:layout_constraintTop_toBottomOf="@+id/login_tv"
-            android:layout_marginTop="@dimen/margin_between_text_personal_account"
-            app:layout_constraintStart_toStartOf="@+id/left_gl"
-            app:layout_constraintEnd_toStartOf="@+id/password_et"
-            app:layout_constraintHorizontal_bias="1.0" />
-
-    <EditText
-            android:id="@+id/password_et"
-            android:textSize="@dimen/text_size_personal_account"
-            android:layout_width="@dimen/text_width_personal_account"
-            android:layout_height="@dimen/text_height_personal_account"
-            app:layout_constraintEnd_toStartOf="@+id/right_gl"
-            app:layout_constraintTop_toBottomOf="@+id/login_et"
-            android:layout_marginTop="@dimen/margin_between_text_personal_account" />
-
-    <TextView
-            android:id="@+id/mail_tv"
-            android:textSize="@dimen/text_size_personal_account"
-            android:text="@string/mail_edit_text"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height_personal_account"
-            app:layout_constraintEnd_toStartOf="@+id/mail_et"
-            app:layout_constraintTop_toBottomOf="@+id/password_tv"
-            app:layout_constraintStart_toStartOf="@+id/left_gl"
-            android:layout_marginTop="@dimen/margin_between_text_personal_account"
-            app:layout_constraintHorizontal_bias="1.0" />
-
-    <EditText
-            android:id="@+id/mail_et"
-            android:textSize="@dimen/text_size_personal_account"
-            android:layout_width="@dimen/text_width_personal_account"
-            android:layout_height="@dimen/text_height_personal_account"
-            app:layout_constraintTop_toBottomOf="@+id/password_et"
-            android:layout_marginTop="@dimen/margin_between_text_personal_account"
-            app:layout_constraintEnd_toStartOf="@+id/right_gl" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:checked="false"
+            android:text="@string/teacher"
+            app:layout_constraintStart_toStartOf="@+id/textlayout_password"
+            app:layout_constraintTop_toBottomOf="@+id/textlayout_password" />
 
     <Button
             android:text="@string/student_registration_fragment_registration_button"
             android:id="@+id/register_button"
-            android:layout_width="@dimen/register_button_width"
-            android:layout_height="@dimen/register_button_height"
-            app:layout_constraintTop_toBottomOf="@+id/mail_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:shapeAppearance="?attr/roundedButton"
+            android:layout_marginEnd="@dimen/buttons_start_and_end_margin"
+            android:layout_marginStart="@dimen/buttons_start_and_end_margin"
+            app:layout_constraintTop_toBottomOf="@+id/textlayout_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/sign_in_button"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -104,14 +87,9 @@
             android:id="@+id/sign_in_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/register_button"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/right_gl"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintGuide_percent="0.9" />
+            app:layout_constraintTop_toBottomOf="@+id/enter_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

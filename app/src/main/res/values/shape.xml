@@ -2,9 +2,25 @@
 <resources>
 
     <style name="Widget.MusicTheory.SmallShapeAppearance" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+<!--        <item name="cornerFamilyTopLeft">rounded</item>-->
+<!--        <item name="android:radius">900dp</item>-->
+    </style>
 
-        <item name="cornerFamilyTopLeft">rounded</item>
-        <item name="android:radius">16dp</item>
+    <style name="Widget.MusicTheory.buttonRounded" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50dp</item>
+        <item name="android:padding">20dp</item>
+<!--        <item name="android:paddingLeft">20dp</item>-->
+<!--        <item name="android:paddingRight">20dp</item>-->
+        <item name="android:insetTop">20dp</item>
+        <item name="android:insetBottom">20dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+<!--        <item name="iconPadding">200dp</item>-->
+        <!--        <item name="cornerFamilyTopLeft">rounded</item>-->
+        <!--        <item name="android:radius">900dp</item>-->
     </style>
 
 

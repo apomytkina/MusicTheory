@@ -9,5 +9,6 @@ interface MainActivityCallback {
     fun showBottomNavigationView()
     fun goTestFragment(position: String)
     fun goResultFragment(id: Long)
-    fun checkDarkMode()
+    fun goAddTestFragment()
+    fun goAccount(email: String, role: String)
 }

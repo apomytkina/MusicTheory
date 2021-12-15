@@ -4,14 +4,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".account.LoginScreen.login.StudentLoginFragment">
-
-    <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/left_gl"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintGuide_percent="0.08" />
+        android:background="?attr/windowBackground"
+        tools:context=".account.presenter.fragments.StudentLoginFragment">
 
     <TextView
             android:id="@+id/enter_tv"
@@ -19,82 +13,97 @@
             android:text="@string/enter_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/left_gl"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintVertical_bias="0.092" />
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498" />
 
-    <TextView
-            android:id="@+id/login_tv"
-            android:textSize="@dimen/text_size_personal_account"
-            android:text="@string/login_edit_text"
+    <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height_personal_account"
-            app:layout_constraintStart_toStartOf="@+id/left_gl"
-            app:layout_constraintEnd_toStartOf="@+id/login_et"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintTop_toBottomOf="@+id/enter_tv"
-            android:layout_marginTop="@dimen/margin_between_text_personal_account" />
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/red_600"
+            app:layout_constraintTop_toBottomOf="@id/enter_tv"
+            android:layout_marginTop="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <EditText
-            android:id="@+id/login_et"
-            android:layout_width="@dimen/edit_text_width_login_fragment"
-            android:layout_height="@dimen/text_height_personal_account"
-            app:layout_constraintEnd_toStartOf="@+id/right_gl"
-            app:layout_constraintTop_toBottomOf="@+id/enter_tv"
-            android:layout_marginTop="@dimen/margin_between_text_personal_account" />
 
-    <TextView
-            android:id="@+id/password_tv"
-            android:textSize="@dimen/text_size_personal_account"
-            android:text="@string/password_edit_text"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height_personal_account"
-            app:layout_constraintTop_toBottomOf="@+id/login_tv"
-            android:layout_marginTop="@dimen/margin_between_text_personal_account"
-            app:layout_constraintStart_toStartOf="@+id/left_gl"
-            app:layout_constraintEnd_toStartOf="@+id/password_et"
-            app:layout_constraintHorizontal_bias="1.0" />
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textlayout_login"
+            app:layout_constraintTop_toBottomOf="@+id/sign_in_button"
+            android:layout_marginTop="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_marginEnd="@dimen/buttons_start_and_end_margin"
+            android:layout_marginStart="@dimen/buttons_start_and_end_margin"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    <EditText
-            android:id="@+id/password_et"
-            android:textSize="@dimen/text_size_personal_account"
-            android:layout_width="@dimen/edit_text_width_login_fragment"
-            android:layout_height="@dimen/text_height_personal_account"
-            app:layout_constraintEnd_toStartOf="@+id/right_gl"
-            app:layout_constraintTop_toBottomOf="@+id/login_et"
-            android:layout_marginTop="@dimen/margin_between_text_personal_account" />
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_et"
+                android:hint="@string/login_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textlayout_password"
+            app:layout_constraintTop_toBottomOf="@+id/textlayout_login"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/buttons_start_and_end_margin"
+            android:layout_marginStart="@dimen/buttons_start_and_end_margin"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_et"
+                android:inputType="textPassword"
+                android:hint="@string/password_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
             android:id="@+id/enter_button"
             android:text="@string/enter_button"
-            android:layout_width="@dimen/enter_button_account_title_width"
-            android:layout_height="@dimen/enter_button_account_title_height"
-            app:layout_constraintTop_toBottomOf="@+id/password_et"
-            app:layout_constraintStart_toStartOf="@+id/left_gl"
-            android:layout_marginTop="@dimen/margin_between_button_and_text_personal_account"
-            app:layout_constraintEnd_toStartOf="@+id/right_gl"
-            app:layout_constraintHorizontal_bias="1.0" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:shapeAppearance="?attr/roundedButton"
+            android:layout_marginEnd="@dimen/buttons_start_and_end_margin"
+            android:layout_marginStart="@dimen/buttons_start_and_end_margin"
+            app:layout_constraintTop_toBottomOf="@+id/textlayout_password"
+            android:layout_marginTop="55dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0" />
+
+    <TextView
+            android:text="Нет аккаунта?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/register_button"
+        />
 
     <Button
             android:text="@string/student_login_fragment_registration_button"
             android:id="@+id/register_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             app:layout_constraintTop_toBottomOf="@+id/enter_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.773"
-            app:layout_constraintVertical_bias="0.287" />
+            app:layout_constraintVertical_bias="0.341"
+            />
 
-    <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/right_gl"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintGuide_percent="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

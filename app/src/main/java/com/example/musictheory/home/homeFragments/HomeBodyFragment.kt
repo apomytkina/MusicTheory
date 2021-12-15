@@ -44,14 +44,6 @@ class HomeBodyFragment : Fragment() {
                     if (activity is MainActivityCallback) {
                         (activity as MainActivityCallback).goTestFragment(oid)
                     }
-//                    val bundle = Bundle()
-//                    bundle.putInt("categoryNumber", position)
-//                    val trainingTestFragment = TrainingTestFragment()
-//                    trainingTestFragment.arguments = bundle
-//                    fragmentManager?.beginTransaction()?.replace(
-//                        R.id.nav_host_fragment_container,
-//                        trainingTestFragment
-//                    )?.commit()
                 }
             }
         )

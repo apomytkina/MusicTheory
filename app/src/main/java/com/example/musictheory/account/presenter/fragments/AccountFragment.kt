@@ -1,39 +1,51 @@
-package com.example.musictheory.account.account
+package com.example.musictheory.account.presenter.fragments
 
-import android.app.Activity
-import android.content.SharedPreferences
-import android.content.res.Configuration
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.preference.PreferenceManager
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import com.example.musictheory.R
+import com.example.musictheory.account.presenter.viewmodels.PersonalAccountViewModel
 import com.example.musictheory.core.data.MainActivityCallback
 import com.example.musictheory.core.presenter.ThemeManager
 import com.example.musictheory.databinding.AccountFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AccountFragment : Fragment() {
 
     private val nightMode = "NIGHT_MODE"
 
-
-    private lateinit var viewModel: AccountViewModel
+    private val personalAccountViewModel: PersonalAccountViewModel
+    by hiltNavGraphViewModels<PersonalAccountViewModel>(R.id.nested_personal_account)
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = AccountFragmentBinding.inflate(inflater)
 
-        binding.buttonChangeThemeAccount.setOnClickListener{
+        binding.textViewAccountName.text = personalAccountViewModel.email.value?.name
+        when (personalAccountViewModel.email.value?.role) {
+            null -> {
+                binding.buttonAddTestAccount.visibility = View.GONE
+            }
+            "teacher" -> {
+                binding.buttonAddTestAccount.visibility = View.VISIBLE
+            }
+            else -> {
+                binding.buttonAddTestAccount.visibility = View.GONE
+            }
+        }
+
+        binding.buttonChangeThemeAccount.setOnClickListener {
             val sharedName = "SharedPref"
             val settings = this.parentFragment?.activity?.getSharedPreferences(sharedName, 0)
             val editor = settings?.edit()
-            when(settings?.getString(nightMode, "none")){
+            when (settings?.getString(nightMode, "none")) {
                 "light" -> {
                     toggleTheme(false)
                     editor?.putString(nightMode, "dark")
@@ -46,16 +58,21 @@ class AccountFragment : Fragment() {
                 }
             }
         }
+
+        binding.buttonAddTestAccount.setOnClickListener {
+            if (activity is MainActivityCallback) {
+                (activity as MainActivityCallback).goAddTestFragment()
+            }
+        }
+
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
         if (activity is MainActivityCallback) {
             (activity as MainActivityCallback).hideBottomNavigationView()
         }
-
     }
 
     override fun onDestroy() {
@@ -65,9 +82,7 @@ class AccountFragment : Fragment() {
         }
     }
 
-
     private fun toggleTheme(isDark: Boolean): Boolean {
-
 
         val mode = when (isDark) {
             true -> ThemeManager.LIGHT_MODE

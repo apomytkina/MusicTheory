@@ -9,7 +9,8 @@
     <string name="hello_blank_fragment2">body</string>
     <string name="hello_blank_fragment3">footer</string>
     <string name="dont_know">Не знаю</string>
-    <string name="result_from">%1$d из %2$d</string>
+<!--    <string name="result_from">%1$d из %2$d</string>-->
+    <string name="result_from">%1$d из %2$d вопросов</string>
     <string name="test_passed">Тест пройден</string>
     <string name="correct_test">Правильных тестов</string>
     <string name="available_test">Теперь доступны тесты:</string>
@@ -25,11 +26,16 @@
     <string name="student_login_fragment_registration_button">Регистрация</string>
     <string name="personal_account_title">Личный кабинет</string>
     <string name="personal_account_back_button">Back</string>
-    <string name="web_client_id">7061348269-mkqqh70081m84sj87040j6dupbmdsa62.apps.googleusercontent.com</string>
+    <string name="web_client_id"></string>
     <string name="account">Account</string>
     <string name="TestName">Название теста</string>
     <string name="question">Вопрос</string>
     <string name="correct_answer">Правильный ответ</string>
     <string name="incorrect_list">Список неправильных ответов</string>
-    <string name="add_test">Добавить</string>
+    <string name="add_test">Добавить тест</string>
+    <string name="change_theme">Сменить тему</string>
+    <string name="add_test_navigation">Добавить тест</string>
+    <string name="delete_tests">Удалить тесты</string>
+    <string name="teacher">Учитель</string>
+    <string name="num_stars">"5"</string>
 </resources>

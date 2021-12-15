@@ -1,4 +1,4 @@
-package com.example.musictheory.data.database
+package com.example.musictheory.core.data.database
 
 import androidx.room.TypeConverter
 import com.example.musictheory.model.Mistake
@@ -31,10 +31,9 @@ class ResultConverter {
     }
 
     @TypeConverter
-    fun ToStringFromList(list: List<List<String>>): String {
+    fun toStringFromList(list: List<List<String>>): String {
         return gson.toJson(list)
     }
-
 
     @TypeConverter
     fun fromStringToList(str: String): List<List<String>> {

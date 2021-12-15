@@ -17,7 +17,7 @@ import androidx.room.PrimaryKey
         )
     ]
 )
-//data class Result(
+// data class Result(
 //    @PrimaryKey(autoGenerate = true)
 //    @ColumnInfo(name = "id")
 //    val id: Long = 1,
@@ -27,7 +27,7 @@ import androidx.room.PrimaryKey
 //    val mistakeCount: Int,
 //    @ColumnInfo(name = "mistake_array")
 //    val mistakeArray: List<Mistake>
-//)
+// )
 data class Result(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")

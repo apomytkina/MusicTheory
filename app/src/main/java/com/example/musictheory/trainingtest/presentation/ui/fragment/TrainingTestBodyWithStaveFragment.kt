@@ -9,20 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.musictheory.R
-import com.example.musictheory.core.data.MainActivityCallback
 import com.example.musictheory.databinding.FragmentTrainingTestBodyWithStaveBinding
-import com.example.musictheory.model.Mistake
-import com.example.musictheory.model.Result
-import com.example.musictheory.model.Test
-import com.example.musictheory.model.TypeQuestion
 import com.example.musictheory.trainingtest.presentation.ui.list.adapter.AdapterTrainingTestBody
 import com.example.musictheory.trainingtest.presentation.ui.list.viewholder.OnItemClickListener
 import com.example.musictheory.trainingtest.presentation.ui.viewmodel.TrainingTestViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 /**
  * A simple [Fragment] subclass.
@@ -57,36 +49,40 @@ class TrainingTestBodyWithStaveFragment : Fragment(), OnItemClickListener {
 
     override fun onItemClick(item: String) {
         if (item == trainingTestViewModel.currentRightAnswer.value) {
-        trainingTestViewModel.saveTest(
-            Test(
-                trainingTestViewModel.serverResponseCollection.value.id.oid,
-                idCategory = 0,
-                questions = listOf("are you "),
-                answers = listOf("yes"),
-                typeOfQuestion = TypeQuestion.SIMPLE
-            )
-        )
-        lifecycleScope.launch {
-            val id = withContext(Dispatchers.IO) {
-                trainingTestViewModel.saveResult(
-                    Result(
-                        idTest = trainingTestViewModel.serverResponseCollection.value.id.oid,
-                        mistakeCount = trainingTestViewModel.currentMistakeList.value.size-1,
-//                        mistakeArray = listOf(Mistake(1, listOf("ошибка", "ошибка")))
-                                mistakeArray = trainingTestViewModel.currentMistakeList.value
-                    )
-                )
-            }
-            trainingTestViewModel.goResult(id)
+            trainingTestViewModel.goNext()
+//        trainingTestViewModel.saveTest(
+//            Test(
+//                trainingTestViewModel.serverResponseCollection.value.id.oid,
+//                idCategory = 0,
+//                questions = listOf("are you "),
+//                answers = listOf("yes"),
+//                typeOfQuestion = TypeQuestion.SIMPLE
+//            )
+//        )
+//        lifecycleScope.launch {
+//            val id = withContext(Dispatchers.IO) {
+//                var mistakeCountNotNull = 0
+//                if(trainingTestViewModel.currentMistakeList.value.isNotEmpty()){
+//                    mistakeCountNotNull = -1
+//                }
+//                trainingTestViewModel.saveResult(
+//                    Result(
+//                        idTest = trainingTestViewModel.serverResponseCollection.value.id.oid,
+//                        mistakeCount = trainingTestViewModel.currentMistakeList.value.size + mistakeCountNotNull,
+// //                        mistakeArray = listOf(Mistake(1, listOf("ошибка", "ошибка")))
+//                                mistakeArray = trainingTestViewModel.currentMistakeList.value
+//                    )
+//                )
+//            }
+//            trainingTestViewModel.goResult(id)
 
-            if (activity is MainActivityCallback) {
-                (activity as MainActivityCallback).goResultFragment(id)
-            }
-        }
+//            if (activity is MainActivityCallback) {
+//                (activity as MainActivityCallback).goResultFragment(id)
+//            }
+//        }
         } else {
             trainingTestViewModel.setMistake(item)
             Toast.makeText(context, "Неправильно", Toast.LENGTH_SHORT).show()
         }
     }
-
 }

@@ -18,6 +18,8 @@
         <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button.Custom</item>
 
         <item name="shapeAppearanceSmallComponent">@style/Widget.MusicTheory.SmallShapeAppearance</item>
+        <item name="roundedButton">@style/Widget.MusicTheory.buttonRounded</item>
+
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 

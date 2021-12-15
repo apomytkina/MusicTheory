@@ -4,16 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.musictheory.R
 import com.example.musictheory.core.data.MainActivityCallback
 import com.example.musictheory.databinding.FragmentResultBinding
-import com.example.musictheory.model.Mistake
 import com.example.musictheory.model.Result
-import com.example.musictheory.model.Test
-import com.example.musictheory.model.TypeQuestion
+import com.example.musictheory.trainingtest.data.model.MusicTestEntity
 import com.example.musictheory.trainingtest.presentation.ui.viewmodel.ResultViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,7 +44,7 @@ class ResultFragment : Fragment() {
         viewModel.test.observe(
             viewLifecycleOwner,
             { test ->
-                Toast.makeText(context, test.id, Toast.LENGTH_LONG).show()
+//                Toast.makeText(context, test.id, Toast.LENGTH_LONG).show()
             }
         )
 
@@ -80,14 +77,15 @@ class ResultFragment : Fragment() {
         viewModel.getTestById(result.idTest)
     }
 
-    private fun setData(result: Result, test: Test) {
-        val allCount = test.questions.size
+    private fun setData(result: Result, test: MusicTestEntity) {
+        val allCount = test.questionArray.size
         binding.tvCorrectCount.text = requireContext().getString(
             R.string.result_from,
-            (allCount - result.mistakeCount),
+            result.mistakeCount,
             allCount
         )
-        binding.progress.progress = (allCount - result.mistakeCount) / allCount
+        val numStars = R.integer.num_stars
+        binding.progress.progress = numStars * (allCount - result.mistakeCount) / allCount
     }
 
     companion object {

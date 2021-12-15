@@ -1,4 +1,4 @@
-package com.example.musictheory.account.LoginScreen
+package com.example.musictheory.account.loginScreen
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,10 +13,6 @@ class PersonalAccountTitleFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var backButton: Button
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
