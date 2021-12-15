@@ -1,11 +1,11 @@
-package com.example.musictheory.data.database
+package com.example.musictheory.core.data.database
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.musictheory.model.Result
-import com.example.musictheory.model.Test
+import com.example.musictheory.trainingtest.data.model.MusicTestEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -24,7 +24,7 @@ interface ResultsDao {
      * Временно не решаем конфикты, а закрываем на них глаза
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveTest(test: Test)
+    fun saveTest(test: MusicTestEntity)
 
     @Query("SELECT * FROM results WHERE id = :id")
     fun getResult(id: Long): Flow<List<Result>>
@@ -37,5 +37,5 @@ interface ResultsDao {
      * поэтому использует строку в качестве id
      */
     @Query("SELECT * FROM tests WHERE id = :id")
-    fun getTest(id: String): Flow<List<Test>>
+    fun getTest(id: String): Flow<List<MusicTestEntity>>
 }

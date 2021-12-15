@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.musictheory.databinding.TestCategoryCardBinding
 import com.example.musictheory.home.differCallback
-import com.example.musictheory.home.homeModel.Collection
+import com.example.musictheory.trainingtest.data.model.MusicTest
 
 class CategoriesAdapter(private var listener: OnItemClickListener) :
-    ListAdapter<Collection, CategoriesViewHolder>(differCallback) {
+    ListAdapter<MusicTest, CategoriesViewHolder>(differCallback) {
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)

@@ -1,4 +1,4 @@
-package com.example.musictheory.data.database
+package com.example.musictheory.core.data.database
 
 import androidx.room.TypeConverter
 import com.example.musictheory.model.Mistake
@@ -27,6 +27,17 @@ class ResultConverter {
     @TypeConverter
     fun fromMistakesToList(str: String): List<Mistake> {
         val listType = object : TypeToken<List<Mistake>>() {}.type
+        return gson.fromJson(str, listType)
+    }
+
+    @TypeConverter
+    fun toStringFromList(list: List<List<String>>): String {
+        return gson.toJson(list)
+    }
+
+    @TypeConverter
+    fun fromStringToList(str: String): List<List<String>> {
+        val listType = object : TypeToken<List<List<String>>>() {}.type
         return gson.fromJson(str, listType)
     }
 }

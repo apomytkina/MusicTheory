@@ -2,16 +2,16 @@ package com.example.musictheory.home.homeAdapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musictheory.databinding.TestCategoryCardBinding
-import com.example.musictheory.home.homeModel.Collection
+import com.example.musictheory.trainingtest.data.model.MusicTest
 
 class CategoriesViewHolder(
     private val binding: TestCategoryCardBinding,
     listener: CategoriesAdapter.OnItemClickListener
 ) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(data: Collection) {
+    fun bind(data: MusicTest) {
         with(binding) {
-            categoryTitle.text = data.name
+            categoryTitle.text = data.testName
         }
     }
 

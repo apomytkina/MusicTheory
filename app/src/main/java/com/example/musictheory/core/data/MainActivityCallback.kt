@@ -7,4 +7,8 @@ package com.example.musictheory.core.data
 interface MainActivityCallback {
     fun hideBottomNavigationView()
     fun showBottomNavigationView()
+    fun goTestFragment(position: String)
+    fun goResultFragment(id: Long)
+    fun goAddTestFragment()
+    fun goAccount(email: String, role: String)
 }

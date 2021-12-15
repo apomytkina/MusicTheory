@@ -4,14 +4,14 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".account.student.registration.StudentPersonalAccountRegistrationFragment">
+        tools:context=".account.loginScreen.registration.StudentPersonalAccountRegistrationFragment">
 
     <androidx.fragment.app.FragmentContainerView
             android:id="@+id/registration_title"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="@dimen/layout_height"
-            android:name="com.example.musictheory.account.PersonalAccountTitleFragment"
+            android:name="com.example.musictheory.account.loginScreen.PersonalAccountTitleFragment"
             app:layout_constraintBottom_toTopOf="@+id/title_gl"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="@dimen/layout_height"
-            android:name="com.example.musictheory.account.student.registration.StudentRegistrationFragment"
+            android:name="com.example.musictheory.account.presenter.fragments.StudentRegistrationFragment"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_gl"
             app:layout_constraintStart_toStartOf="parent"

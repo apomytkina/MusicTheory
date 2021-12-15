@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.musictheory.home.homeModel.Collection
 import com.example.musictheory.home.homeRepository.CategoriesRepository
+import com.example.musictheory.trainingtest.data.model.MusicTest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
@@ -17,8 +17,8 @@ class HomeViewModel @Inject constructor(
     private val repository: CategoriesRepository
 ) : ViewModel() {
 
-    private val _categories = MutableLiveData<List<Collection>>()
-    val categories: LiveData<List<Collection>> = _categories
+    private val _categories = MutableLiveData<List<MusicTest>>()
+    val categories: LiveData<List<MusicTest>> = _categories
 
     private fun getCategories() = viewModelScope.launch {
         repository.getCategories().let { response ->

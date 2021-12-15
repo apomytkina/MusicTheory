@@ -1,4 +1,4 @@
-package com.example.musictheory.account
+package com.example.musictheory.account.loginScreen
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,10 +14,6 @@ class PersonalAccountTitleFragment : Fragment() {
 
     private lateinit var backButton: Button
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,10 +22,10 @@ class PersonalAccountTitleFragment : Fragment() {
         _binding = FragmentPersonalAccountTitleBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        backButton = binding.backButton
-        backButton.setOnClickListener {
-            requireActivity().fragmentManager.popBackStack()
-        }
+//        backButton = binding.backButton
+//        backButton.setOnClickListener {
+//            requireActivity().fragmentManager.popBackStack()
+//        }
 
         return view
     }

@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.musictheory.data.Repository
+import com.example.musictheory.core.data.Repository
 import com.example.musictheory.model.Result
-import com.example.musictheory.model.Test
+import com.example.musictheory.trainingtest.data.model.MusicTestEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.collect
@@ -21,21 +21,21 @@ class ResultViewModel @Inject constructor(
     val result: LiveData<Result>
         get() = _result
 
-    private val _test: MutableLiveData<Test> = MutableLiveData()
-    val test: LiveData<Test>
+    private val _test: MutableLiveData<MusicTestEntity> = MutableLiveData()
+    val test: LiveData<MusicTestEntity>
         get() = _test
 
-    fun saveResult(result: Result) {
-        viewModelScope.launch {
-            repository.local.saveResult(result)
-        }
-    }
-
-    fun saveTest(test: Test) {
-        viewModelScope.launch {
-            repository.local.saveTest(test)
-        }
-    }
+//    fun saveResult(result: Result) {
+//        viewModelScope.launch {
+//            repository.local.saveResult(result)
+//        }
+//    }
+//
+//    fun saveTest(test: Test) {
+//        viewModelScope.launch {
+//            repository.local.saveTest(test)
+//        }
+//    }
 
     fun getResultById(id: Long) {
         viewModelScope.launch {
