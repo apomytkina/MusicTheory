@@ -40,8 +40,8 @@ class PersonalAccountViewModel @Inject constructor() : ViewModel() {
         return accountInteractor.postSignUp(token, name, teacher, pass)
     }
 
-    suspend fun postLogin(token: String): Response<ResponseLogin> {
-        return accountInteractor.postLogin(token)
+    suspend fun postLogin(token: String, pass: String): Response<ResponseLogin> {
+        return accountInteractor.postLogin(token, pass)
     }
 
     fun setEmail(email: ResponseLogin) {

@@ -4,5 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class PostLogin(
     @SerializedName("token")
-    val token: String
+    val token: String,
+    @SerializedName("pass")
+    val pass: String
 )

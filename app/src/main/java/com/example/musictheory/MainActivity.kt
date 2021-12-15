@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -21,7 +20,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainActivityCallback {
@@ -127,14 +125,14 @@ class MainActivity : AppCompatActivity(), MainActivityCallback {
 
     override fun goAccount(email: String, role: String) {
 //        val bundle = Bundle()
-        val bundle = bundleOf(email to "name", role to "role")
+//        val bundle = bundleOf(email to "name", role to "role")
 //        bundle.putString("name", email)
 //        bundle.putString("role", role)
-        Timber.v("t1 email " + email)
+//        Timber.v("t1 email " + email)
 //        navController.navigate(R.id.action_studentPersonalAccountLoginFragment_to_accountFragment, bundle)
         navController.navigate(
-            R.id.action_studentPersonalAccountLoginFragment_to_accountFragment,
-            bundle
+            R.id.action_studentPersonalAccountLoginFragment_to_accountFragment
+//            bundle
         )
     }
 

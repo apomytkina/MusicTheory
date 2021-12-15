@@ -44,10 +44,11 @@ class AccountInteractor(
             .execute()
     }
 
-    suspend fun postLogin(token: String) = withContext(Dispatchers.IO) {
+    suspend fun postLogin(token: String, pass: String) = withContext(Dispatchers.IO) {
         mainRepository.postLogin(
             PostLogin(
-                token
+                token,
+                pass
             )
         )
             .execute()

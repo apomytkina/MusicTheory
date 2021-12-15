@@ -131,12 +131,6 @@
             <action
                     android:id="@+id/action_accountFragment_to_addTestFragment"
                     app:destination="@id/addTestFragment" />
-            <argument
-                    android:name="name"
-                    app:argType="string" />
-            <argument
-                    android:name="role"
-                    app:argType="string" />
 
         </fragment>
         <fragment

@@ -155,7 +155,7 @@ class StudentRegistrationFragment : Fragment() {
                     ).show()
 
                     val responseLogin = async {
-                        personalAccountViewModel.postLogin(token)
+                        personalAccountViewModel.postLogin(token, pass)
                     }
                     val responseLoginAwait = responseLogin.await().body()
                     when {

@@ -74,7 +74,7 @@ class StudentLoginFragment : Fragment() {
             .build()
         val account = GoogleSignIn.getLastSignedInAccount(context)
         if (account != null && account.idToken != null) {
-            postLoginToServer(account.idToken)
+            postLoginToServer(account.idToken, "")
         }
 //        updateUI(account)
 
@@ -86,7 +86,10 @@ class StudentLoginFragment : Fragment() {
         registerButton = binding.registerButton
 
         enterButton.setOnClickListener {
-            postLoginToServer(binding.loginEt.text.toString().trim())
+            postLoginToServer(
+                binding.loginEt.text.toString().trim(),
+                binding.passwordEt.text.toString()
+            )
         }
 
         registerButton.setOnClickListener {
@@ -129,10 +132,10 @@ class StudentLoginFragment : Fragment() {
         return view
     }
 
-    private fun postLoginToServer(token: String) {
+    private fun postLoginToServer(token: String, pass: String) {
         lifecycleScope.launch {
             val responseLogin = async {
-                personalAccountViewModel.postLogin(token)
+                personalAccountViewModel.postLogin(token, pass)
             }
             val responseLoginAwait = responseLogin.await().body()
             when {
@@ -166,7 +169,10 @@ class StudentLoginFragment : Fragment() {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             if (account != null && account.idToken != null) {
-                postLoginToServer(account.idToken)
+                postLoginToServer(
+                    account.idToken,
+                    ""
+                )
             }
 
             updateUI(account)
