@@ -1,4 +1,4 @@
-package com.example.musictheory.account.student.registration
+package com.example.musictheory.account.loginScreen.registration
 
 import android.os.Bundle
 import android.view.LayoutInflater

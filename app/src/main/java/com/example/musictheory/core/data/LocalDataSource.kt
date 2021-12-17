@@ -1,8 +1,8 @@
-package com.example.musictheory.data
+package com.example.musictheory.core.data
 
-import com.example.musictheory.data.database.ResultsDao
+import com.example.musictheory.core.data.database.ResultsDao
 import com.example.musictheory.model.Result
-import com.example.musictheory.model.Test
+import com.example.musictheory.trainingtest.data.model.MusicTestEntity
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -20,7 +20,7 @@ class LocalDataSource @Inject constructor(
             resultsDao.saveResult(result)
         }
 
-    suspend fun saveTest(test: Test) {
+    suspend fun saveTest(test: MusicTestEntity) {
         withContext(Dispatchers.IO) {
             resultsDao.saveTest(test)
         }
@@ -30,7 +30,7 @@ class LocalDataSource @Inject constructor(
         return resultsDao.getResult(id)
     }
 
-    fun getTestById(id: String): Flow<List<Test>> {
+    fun getTestById(id: String): Flow<List<MusicTestEntity>> {
         return resultsDao.getTest(id)
     }
 }

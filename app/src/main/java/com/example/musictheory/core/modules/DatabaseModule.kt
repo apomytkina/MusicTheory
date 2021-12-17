@@ -1,8 +1,8 @@
-package com.example.musictheory.di
+package com.example.musictheory.core.modules
 
 import android.content.Context
 import androidx.room.Room
-import com.example.musictheory.data.database.AppDatabase
+import com.example.musictheory.core.data.database.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

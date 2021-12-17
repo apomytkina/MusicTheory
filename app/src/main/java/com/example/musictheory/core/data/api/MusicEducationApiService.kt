@@ -1,9 +1,14 @@
 package com.example.musictheory.core.data.api
 
+import com.example.musictheory.account.data.model.PostDeleteTest
+import com.example.musictheory.account.data.model.PostLogin
+import com.example.musictheory.account.data.model.PostMusicTest
+import com.example.musictheory.account.data.model.PostSignUp
+import com.example.musictheory.account.data.model.ResponseLogin
 import com.example.musictheory.core.data.model.ServerResponse
 import com.example.musictheory.home.homeModel.PostSection
 import com.example.musictheory.home.homeModel.SectionsCollection
-import com.example.musictheory.trainingtest.data.model.PostMusicTest
+import com.example.musictheory.trainingtest.data.model.PostResult
 import com.example.musictheory.trainingtest.data.model.ServerResponseMusicTest
 import retrofit2.Call
 import retrofit2.http.Body
@@ -31,4 +36,16 @@ interface MusicEducationApiService {
 
     @POST("put_data/")
     fun postTest(@Body postMusicTest: PostMusicTest): Call<PostMusicTest>
+
+    @POST("put_data/")
+    fun postResult(@Body postResult: PostResult): Call<PostResult>
+
+    @POST("remove_data/")
+    fun postDeleteTest(@Body postDeleteTest: PostDeleteTest): Call<PostDeleteTest>
+
+    @POST("signup/")
+    fun postSignUp(@Body postSignUp: PostSignUp): Call<ResponseLogin>
+
+    @POST("login/")
+    fun postLogin(@Body postLogin: PostLogin): Call<ResponseLogin>
 }

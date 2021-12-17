@@ -1,13 +1,13 @@
-package com.example.musictheory.data.database
+package com.example.musictheory.core.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.musictheory.model.Result
-import com.example.musictheory.model.Test
+import com.example.musictheory.trainingtest.data.model.MusicTestEntity
 
 @Database(
-    entities = [Result::class, Test::class],
+    entities = [Result::class, MusicTestEntity::class],
     version = 1,
     exportSchema = false
 )

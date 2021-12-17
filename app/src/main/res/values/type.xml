@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance.MaterialComponents.Button.Custom">
+        <item name="fontFamily">Roboto</item>
+
+        <item name="android:textSize">13sp</item>
+
+        <item name="android:letterSpacing">0.01</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="strokeColor">?attr/colorPrimary</item>
+    </style>
+    <style name="TextAppearance.MusicTheory.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">Roboto</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="TextAppearance.MusicTheory.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">Roboto</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="TextAppearance.MusicTheory.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">Roboto</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+</resources>
